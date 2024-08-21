@@ -1,0 +1,4111 @@
+<!-- HTML Code -->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>English Words Dictionary</title>
+  <style>
+    /* Add CSS hacks for IE 7 */
+    *html #suggestions {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 100;
+      display: none;
+    }
+    *html #suggestions ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    *html #suggestions li {
+      padding: 10px;
+      border-bottom: 1px solid #ccc;
+    }
+    *html #suggestions li:hover {
+      background-color: #eee;
+    }
+  </style>
+</head>
+<body>
+  <h1>English Words Dictionary</h1>
+  <input id="search-input" type="text" placeholder="Enter a word">
+  <button id="search-button">Search</button>
+  <div id="result"></div>
+  <div id="suggestions">
+    <ul id="suggestions-list"></ul>
+  </div>
+
+  <script>
+  // JavaScript Code (script.js)
+var dictionary = {
+  "a": {
+  "apple": {
+    "definition": "a sweet, juicy fruit",
+    "synonyms": ["fruit", "produce"],
+    "antonyms": ["vegetable"]
+  },
+  "ant": {
+    "definition": "a small, industrious insect",
+    "synonyms": ["insect", "bug"],
+    "antonyms": ["mammal"]
+  },
+  "aardvark": {
+    "definition": "a nocturnal mammal with a long snout",
+    "synonyms": ["mammal", "animal"],
+    "antonyms": ["reptile"]
+  },
+  "abundance": {
+    "definition": "a large or plentiful amount",
+    "synonyms": ["plenty", "wealth"],
+    "antonyms": ["scarcity", "lack"]
+  },
+  "acacia": {
+    "definition": "a type of tree or shrub",
+    "synonyms": ["tree", "plant"],
+    "antonyms": ["animal"]
+  },
+  "accelerate": {
+    "definition": "to increase speed or rate",
+    "synonyms": ["speed up", "hasten"],
+    "antonyms": ["slow down", "decelerate"]
+  },
+  "accomplish": {
+    "definition": "to complete or fulfill something",
+    "synonyms": ["achieve", "complete"],
+    "antonyms": ["fail", "neglect"]
+  },
+  "acorn": {
+    "definition": "the nut of an oak tree",
+    "synonyms": ["nut", "seed"],
+    "antonyms": ["fruit"]
+  },
+  "actor": {
+    "definition": "a person who performs in a play or movie",
+    "synonyms": ["performer", "artist"],
+    "antonyms": ["audience"]
+  },
+  "adamant": {
+    "definition": "unyielding or stubborn",
+    "synonyms": ["firm", "resolute"],
+    "antonyms": ["yielding", "flexible"]
+  },
+  "adventure": {
+    "definition": "an exciting or unusual experience",
+    "synonyms": ["excitement", "exploit"],
+    "antonyms": ["boredom", " routine"]
+  },
+  "advocate": {
+    "definition": "a person who publicly supports a cause or policy",
+    "synonyms": ["supporter", "proponent"],
+    "antonyms": ["opponent", "critic"]
+  },
+  "affection": {
+    "definition": "a gentle feeling of fondness or liking",
+    "synonyms": ["fondness", "love"],
+    "antonyms": ["dislike", "hatred"]
+  },
+  "aggregate": {
+    "definition": "a whole formed by combining several elements",
+    "synonyms": ["total", "collection"],
+    "antonyms": ["individual", "separate"]
+  },
+  "ambition": {
+    "definition": "a strong desire to achieve something",
+    "synonyms": ["aspiration", "drive"],
+    "antonyms": ["apathy", "indifference"]
+  },
+  "amplify": {
+    "definition": "to increase the volume or intensity of something",
+    "synonyms": ["boost", "enhance"],
+    "antonyms": ["reduce", "diminish"]
+  },
+  "antagonist": {
+    "definition": "a person who opposes or competes with another",
+    "synonyms": ["opponent", "adversary"],
+    "antonyms": ["protagonist", "ally"]
+  },
+  "anticipate": {
+    "definition": "to expect or predict something",
+    "synonyms": ["expect", "foresee"],
+    "antonyms": ["doubt", "question"]
+  },
+  "aspire": {
+    "definition": "to have a strong desire to achieve something",
+    "synonyms": ["aim", "strive"],
+    "antonyms": ["despair", "surrender"]
+  },
+  "attain": {
+    "definition": "to achieve or reach something",
+    "synonyms": ["achieve", "accomplish"],
+    "antonyms": ["fail", "lose"]
+  },
+  "audacity": {
+    "definition": "boldness or daring, especially with confidence",
+    "synonyms": ["boldness", "bravery"],
+    "antonyms": ["timidity", "fear"]
+  },
+  "altruism": {
+    "definition": "the belief in or practice of selfless concern for others",
+    "synonyms": ["selflessness", "generosity"],
+    "antonyms": ["selfishness", "greed"]
+  },
+  "amend": {
+    "definition": "to make changes or improvements to something",
+    "synonyms": ["modify", "correct"],
+    "antonyms": ["worsen", "damage"]
+  },
+  "arid": {
+    "definition": "extremely dry or lacking in moisture",
+    "synonyms": ["dry", "barren"],
+    "antonyms": ["humid", "fertile"]
+  },
+  "articulate": {
+    "definition": "having or showing the ability to speak fluently",
+    "synonyms": ["eloquent", "expressive"],
+    "antonyms": ["inarticulate", "mumbled"]
+  },
+  "ascend": {
+    "definition": "to go up or rise",
+    "synonyms": ["climb", "soar"],
+    "antonyms": ["descend", "fall"]
+  },
+  "aversion": {
+    "definition": "a strong dislike or disinclination",
+    "synonyms": ["dislike", "hatred"],
+    "antonyms": ["liking", "affection"]
+  },
+  "ambiguous": {
+    "definition": "open to more than one interpretation",
+    "synonyms": ["unclear", "vague"],
+    "antonyms": ["clear", "unambiguous"]
+  },
+  "abdicate": {
+    "definition": "to renounce a throne or responsibility",
+    "synonyms": ["resign", "relinquish"],
+    "antonyms": ["retain", "accept"]
+  },
+  "affluent": {
+    "definition": "having a great deal of money; wealthy",
+    "synonyms": ["wealthy", "prosperous"],
+    "antonyms": ["poor", "impoverished"]
+  },
+  "apathy": {
+    "definition": "lack of interest, enthusiasm, or concern",
+    "synonyms": ["indifference", "unconcern"],
+    "antonyms": ["interest", "enthusiasm"]
+  },
+  "archaic": {
+    "definition": "very old or old-fashioned",
+    "synonyms": ["antiquated", "obsolete"],
+    "antonyms": ["modern", "contemporary"]
+  },
+  "adorn": {
+    "definition": "to decorate or add beauty to something",
+    "synonyms": ["decorate", "embellish"],
+    "antonyms": ["disfigure", "mar"]
+  },
+  "agile": {
+    "definition": "able to move quickly and easily",
+    "synonyms": ["nimble", "swift"],
+    "antonyms": ["clumsy", "slow"]
+  },
+  "alias": {
+    "definition": "a false or assumed identity",
+    "synonyms": ["pseudonym", "nickname"],
+    "antonyms": ["identity", "name"]
+  },
+  "align": {
+    "definition": "to place or arrange in a straight line",
+    "synonyms": ["arrange", "line up"],
+    "antonyms": ["misalign", "disarrange"]
+  },
+  "alleviate": {
+    "definition": "to make suffering, deficiency, or a problem less severe",
+    "synonyms": ["ease", "relieve"],
+    "antonyms": ["intensify", "aggravate"]
+  },
+  "aspiration": {
+    "definition": "a hope or ambition of achieving something",
+    "synonyms": ["ambition", "goal"],
+    "antonyms": ["indifference", "apathy"]
+  },
+  "astound": {
+    "definition": "to shock or greatly surprise",
+    "synonyms": ["amaze", "astonish"],
+    "antonyms": ["bore", "expect"]
+  },
+  "authentic": {
+    "definition": "genuine; real",
+    "synonyms": ["genuine", "real"],
+    "antonyms": ["fake", "counterfeit"]
+  },
+  "averse": {
+    "definition": "having a strong dislike or opposition to something",
+    "synonyms": ["opposed", "reluctant"],
+    "antonyms": ["eager", "keen"]
+  },
+  "adversity": {
+    "definition": "a difficult or unpleasant situation",
+    "synonyms": ["hardship", "misfortune"],
+    "antonyms": ["prosperity", "fortune"]
+  },
+  "aesthetic": {
+    "definition": "concerned with beauty or the appreciation of beauty",
+    "synonyms": ["artistic", "beautiful"],
+    "antonyms": ["unattractive", "ugly"]
+  },
+  "aggregate": {
+    "definition": "a whole formed by combining several separate elements",
+    "synonyms": ["collection", "total"],
+    "antonyms": ["individual", "single"]
+  },
+  "allocate": {
+    "definition": "to distribute resources or duties for a particular purpose",
+    "synonyms": ["assign", "allot"],
+    "antonyms": ["withhold", "keep"]
+  },
+  "analyze": {
+    "definition": "to examine in detail for purposes of explanation and interpretation",
+    "synonyms": ["examine", "inspect"],
+    "antonyms": ["ignore", "neglect"]
+  },
+  "anomaly": {
+    "definition": "something that deviates from what is standard, normal, or expected",
+    "synonyms": ["irregularity", "aberration"],
+    "antonyms": ["norm", "standard"]
+  },
+  "antique": {
+    "definition": "a collectible object such as a piece of furniture or work of art that has a high value because of its age and quality",
+    "synonyms": ["old", "vintage"],
+    "antonyms": ["modern", "contemporary"]
+  },
+  "appease": {
+    "definition": "to calm or pacify, especially by acceding to demands",
+    "synonyms": ["pacify", "satisfy"],
+    "antonyms": ["provoke", "agitate"]
+  },
+  "ardent": {
+    "definition": "enthusiastic or passionate",
+    "synonyms": ["fervent", "eager"],
+    "antonyms": ["apathetic", "indifferent"]
+  },
+  "attribute": {
+    "definition": "a quality or feature regarded as a characteristic or inherent part of someone or something",
+    "synonyms": ["trait", "characteristic"],
+    "antonyms": ["disqualify", "dismiss"]
+  },
+  "absolve": {
+    "definition": "to free from guilt or blame",
+    "synonyms": ["forgive", "pardon"],
+    "antonyms": ["condemn", "blame"]
+  },
+  "abstain": {
+    "definition": "to deliberately choose not to do or have something",
+    "synonyms": ["refrain", "avoid"],
+    "antonyms": ["indulge", "partake"]
+  },
+  "acclaim": {
+    "definition": "to praise enthusiastically and publicly",
+    "synonyms": ["applaud", "commend"],
+    "antonyms": ["criticize", "denounce"]
+  },
+  "acumen": {
+    "definition": "the ability to make good judgments and quick decisions",
+    "synonyms": ["sharpness", "insight"],
+    "antonyms": ["ignorance", "stupidity"]
+  },
+  "adjacent": {
+    "definition": "next to or adjoining something else",
+    "synonyms": ["near", "adjoining"],
+    "antonyms": ["distant", "separate"]
+  },
+  "adversary": {
+    "definition": "one's opponent in a contest, conflict, or dispute",
+    "synonyms": ["opponent", "rival"],
+    "antonyms": ["ally", "supporter"]
+  },
+  "afflict": {
+    "definition": "to cause pain or suffering to; to trouble",
+    "synonyms": ["trouble", "torment"],
+    "antonyms": ["comfort", "relieve"]
+  },
+  "aloof": {
+    "definition": "not friendly or forthcoming; cool and distant",
+    "synonyms": ["distant", "detached"],
+    "antonyms": ["friendly", "sociable"]
+  },
+  "amendable": {
+    "definition": "capable of being altered or revised",
+    "synonyms": ["adjustable", "modifiable"],
+    "antonyms": ["fixed", "rigid"]
+  },
+  "apprehensive": {
+    "definition": "anxious or fearful that something bad or unpleasant will happen",
+    "synonyms": ["anxious", "worried"],
+    "antonyms": ["confident", "assured"]
+  },
+  "arbitrary": {
+    "definition": "based on random choice or personal whim, rather than any reason or system",
+    "synonyms": ["random", "capricious"],
+    "antonyms": ["systematic", "rational"]
+  },
+  "arduous": {
+    "definition": "involving or requiring strenuous effort; difficult and tiring",
+    "synonyms": ["difficult", "challenging"],
+    "antonyms": ["easy", "effortless"]
+  },
+  "aspiration": {
+    "definition": "a hope or ambition of achieving something",
+    "synonyms": ["ambition", "goal"],
+    "antonyms": ["indifference", "apathy"]
+  },
+  "assertive": {
+    "definition": "having or showing a confident and forceful personality",
+    "synonyms": ["confident", "bold"],
+    "antonyms": ["timid", "shy"]
+  },
+  "assimilate": {
+    "definition": "to take in and understand fully; to absorb and integrate into a wider society or culture",
+    "synonyms": ["absorb", "integrate"],
+    "antonyms": ["reject", "isolate"]
+  },
+  "atrophy": {
+    "definition": "the wasting away or decline of a body part or tissue, or of a skill or quality",
+    "synonyms": ["decline", "degeneration"],
+    "antonyms": ["growth", "development"]
+  },
+  "audible": {
+    "definition": "able to be heard",
+    "synonyms": ["hearable", "perceptible"],
+    "antonyms": ["inaudible", "silent"]
+  },
+  "augment": {
+    "definition": "to make something greater by adding to it; to increase",
+    "synonyms": ["increase", "enhance"],
+    "antonyms": ["decrease", "diminish"]
+  },
+  "austere": {
+    "definition": "severe or strict in manner, attitude, or appearance; having no comforts or luxuries",
+    "synonyms": ["stern", "strict"],
+    "antonyms": ["indulgent", "luxurious"]
+  },
+  "averse": {
+    "definition": "having a strong dislike of or opposition to something",
+    "synonyms": ["opposed", "reluctant"],
+    "antonyms": ["eager", "willing"]
+  },
+  "abscond": {
+    "definition": "to leave hurriedly and secretly, typically to avoid detection or arrest",
+    "synonyms": ["flee", "escape"],
+    "antonyms": ["stay", "remain"]
+  },
+  "aberration": {
+    "definition": "a departure from what is normal, usual, or expected, typically an unwelcome one",
+    "synonyms": ["anomaly", "deviation"],
+    "antonyms": ["normality", "conformity"]
+  },
+  "abhor": {
+    "definition": "to regard with disgust and hatred",
+    "synonyms": ["detest", "loathe"],
+    "antonyms": ["love", "admire"]
+  },
+  "abound": {
+    "definition": "to exist in large numbers or amounts",
+    "synonyms": ["overflow", "flourish"],
+    "antonyms": ["decline", "diminish"]
+  },
+  "abrasive": {
+    "definition": "showing little concern for the feelings of others; harsh",
+    "synonyms": ["harsh", "rough"],
+    "antonyms": ["gentle", "smooth"]
+  },
+  "abrogate": {
+    "definition": "to repeal or do away with a law, right, or formal agreement",
+    "synonyms": ["revoke", "annul"],
+    "antonyms": ["institute", "enact"]
+  },
+  "abstemious": {
+    "definition": "not self-indulgent, especially when eating and drinking",
+    "synonyms": ["moderate", "temperate"],
+    "antonyms": ["gluttonous", "indulgent"]
+  },
+  "acclimate": {
+    "definition": "to become accustomed to a new climate or environment",
+    "synonyms": ["adjust", "adapt"],
+    "antonyms": ["unadjust", "resist"]
+  },
+  "accolade": {
+    "definition": "an award or privilege granted as a special honor",
+    "synonyms": ["honor", "award"],
+    "antonyms": ["criticism", "reproach"]
+  },
+  "affable": {
+    "definition": "friendly, good-natured, or easy to talk to",
+    "synonyms": ["friendly", "amiable"],
+    "antonyms": ["unfriendly", "aloof"]
+  },
+  "accentuate": {
+    "definition": "to make more noticeable or prominent",
+    "synonyms": ["highlight", "emphasize"],
+    "antonyms": ["downplay", "diminish"]
+  },
+  "admonish": {
+    "definition": "to warn or reprimand someone firmly",
+    "synonyms": ["reprimand", "scold"],
+    "antonyms": ["praise", "commend"]
+  },
+  "adroit": {
+    "definition": "clever or skillful in using the hands or mind",
+    "synonyms": ["skillful", "dexterous"],
+    "antonyms": ["clumsy", "inept"]
+  },
+  "affinity": {
+    "definition": "a natural liking for and understanding of someone or something",
+    "synonyms": ["liking", "attraction"],
+    "antonyms": ["dislike", "aversion"]
+  },
+  "aggravate": {
+    "definition": "to make a problem, injury, or offense worse or more serious",
+    "synonyms": ["worsen", "intensify"],
+    "antonyms": ["alleviate", "soothe"]
+  },
+  "allegory": {
+    "definition": "a story, poem, or picture that can be interpreted to reveal a hidden meaning, typically a moral or political one",
+    "synonyms": ["symbolism", "parable"],
+    "antonyms": ["literalness", "reality"]
+  },
+  "alleviate": {
+    "definition": "to make suffering, deficiency, or a problem less severe",
+    "synonyms": ["relieve", "ease"],
+    "antonyms": ["exacerbate", "worsen"]
+  },
+  "ambivalent": {
+    "definition": "having mixed feelings or contradictory ideas about something or someone",
+    "synonyms": ["uncertain", "conflicted"],
+    "antonyms": ["decisive", "clear"]
+  },
+  "ameliorate": {
+    "definition": "to make something bad or unsatisfactory better",
+    "synonyms": ["improve", "enhance"],
+    "antonyms": ["worsen", "deteriorate"]
+  },
+  "anachronism": {
+    "definition": "a thing belonging or appropriate to a period other than that in which it exists, especially something old-fashioned",
+    "synonyms": ["misplacement", "outdated"],
+    "antonyms": ["contemporary", "modern"]
+  },
+  "amorphous": {
+    "definition": "without a clearly defined shape or form",
+    "synonyms": ["shapeless", "formless"],
+    "antonyms": ["defined", "structured"]
+  },
+  "anachronistic": {
+    "definition": "belonging to a period other than that being portrayed",
+    "synonyms": ["outdated", "antiquated"],
+    "antonyms": ["modern", "current"]
+  },
+  "anecdote": {
+    "definition": "a short amusing or interesting story about a real incident or person",
+    "synonyms": ["story", "tale"],
+    "antonyms": ["epic", "chronicle"]
+  },
+  "annihilate": {
+    "definition": "to destroy utterly; obliterate",
+    "synonyms": ["destroy", "obliterate"],
+    "antonyms": ["create", "preserve"]
+  },
+  "antagonistic": {
+    "definition": "showing or feeling active opposition or hostility toward someone or something",
+    "synonyms": ["hostile", "opposed"],
+    "antonyms": ["friendly", "supportive"]
+  },
+  "antithesis": {
+    "definition": "a person or thing that is the direct opposite of someone or something else",
+    "synonyms": ["opposite", "contrast"],
+    "antonyms": ["similarity", "likeness"]
+  },
+  "aplomb": {
+    "definition": "self-confidence or assurance, especially when in a demanding situation",
+    "synonyms": ["poise", "confidence"],
+    "antonyms": ["nervousness", "anxiety"]
+  },
+  "apocryphal": {
+    "definition": "of doubtful authenticity, although widely circulated as being true",
+    "synonyms": ["fictitious", "fabricated"],
+    "antonyms": ["authentic", "genuine"]
+  },
+  "arbitrate": {
+    "definition": "to reach an authoritative judgment or settlement",
+    "synonyms": ["judge", "mediate"],
+    "antonyms": ["ignore", "disregard"]
+  },
+  "ascetic": {
+    "definition": "characterized by severe self-discipline and abstention from all forms of indulgence, typically for religious reasons",
+    "synonyms": ["austere", "self-denying"],
+    "antonyms": ["hedonistic", "self-indulgent"]
+  },
+  "above and beyond": {
+    "definition": "exceeding expectations or requirements"
+  },
+  "acid test": {
+    "definition": "a definitive test or criterion that proves the worth or truth of something"
+  },
+  "across the board": {
+    "definition": "applying to all without exception"
+  },
+  "act of God": {
+    "definition": "an event caused by natural forces beyond human control, such as a storm or earthquake"
+  },
+  "add fuel to the fire": {
+    "definition": "to make a bad situation worse by adding more provocation"
+  },
+  "against the clock": {
+    "definition": "in a race against time; under time pressure"
+  },
+  "all ears": {
+    "definition": "fully listening; eager to hear something"
+  },
+  "apple of one's eye": {
+    "definition": "a person or thing that is greatly loved or cherished"
+  },
+  "at arm's length": {
+    "definition": "maintaining a safe or emotional distance"
+  },
+  "at the drop of a hat": {
+    "definition": "immediately, without hesitation"
+  },
+  "a blessing in disguise": {
+    "definition": "something that seems bad at first but ends up being good"
+  },
+  "a dime a dozen": {
+    "definition": "very common and of little value"
+  },
+  "a fool's errand": {
+    "definition": "a task that has no hope of success"
+  },
+  "a leopard can't change its spots": {
+    "definition": "people can't change their inherent nature"
+  },
+  "a picture is worth a thousand words": {
+    "definition": "a visual presentation is more descriptive than words"
+  },
+  "a taste of your own medicine": {
+    "definition": "receiving the same bad treatment that one has given to others"
+  },
+  "a tough nut to crack": {
+    "definition": "a difficult problem or situation"
+  },
+  "add insult to injury": {
+    "definition": "to make a bad situation worse by doing something further to upset someone"
+  },
+  "all in the same boat": {
+    "definition": "in the same difficult situation as others"
+  },
+  "at odds": {
+    "definition": "in disagreement or conflict"
+  },
+  "a blessing in disguise": {
+    "definition": "something that initially seems bad but turns out to be good"
+  },
+  "a chip on your shoulder": {
+    "definition": "a deep resentment or feeling of grievance, often about a perceived wrong"
+  },
+  "a clean slate": {
+    "definition": "an opportunity to start fresh with no past mistakes"
+  },
+  "a far cry from": {
+    "definition": "very different from something"
+  },
+  "a house of cards": {
+    "definition": "a structure or plan that is fragile and easily collapses"
+  },
+  "a penny for your thoughts": {
+    "definition": "a way of asking someone what they are thinking"
+  },
+  "a rolling stone gathers no moss": {
+    "definition": "a person who does not settle in one place is unlikely to accumulate wealth or responsibilities"
+  },
+  "a shot in the dark": {
+    "definition": "a guess or attempt with little chance of success"
+  },
+  "a slap on the wrist": {
+    "definition": "a mild punishment or warning"
+  },
+  "a stitch in time saves nine": {
+    "definition": "taking action early can prevent more trouble later"
+  },
+  "a blessing in disguise": {
+    "definition": "something that initially seems bad but turns out to be good"
+  },
+  "a bird in the hand is worth two in the bush": {
+    "definition": "it is better to have a lesser but certain advantage than the possibility of a greater one that may come to nothing"
+  },
+  "a bitter pill to swallow": {
+    "definition": "something that is difficult or unpleasant to accept"
+  },
+  "a bone to pick": {
+    "definition": "a grievance or complaint that needs to be discussed"
+  },
+  "a cold day in hell": {
+    "definition": "something that is very unlikely to happen"
+  },
+  "a cut above": {
+    "definition": "slightly better than others of the same kind"
+  },
+  "a drop in the bucket": {
+    "definition": "a very small or insignificant amount compared to what is needed or desired"
+  },
+  "a fish out of water": {
+    "definition": "someone who is uncomfortable or out of place in a particular situation"
+  },
+  "a flash in the pan": {
+    "definition": "something that shows potential or looks promising in the beginning but fails to deliver anything lasting"
+  },
+  "a friend in need is a friend indeed": {
+    "definition": "a true friend is someone who helps you when you are in trouble"
+  },
+  "a house divided against itself cannot stand": {
+    "definition": "a group or organization that is in conflict with itself cannot succeed"
+  },
+  "a man of few words": {
+    "definition": "someone who does not speak much"
+  },
+  "a match made in heaven": {
+    "definition": "a perfect partnership or relationship"
+  },
+  "a new lease on life": {
+    "definition": "a chance to start over and improve one's situation"
+  },
+  "a pat on the back": {
+    "definition": "an expression of praise or approval"
+  },
+  "a piece of cake": {
+    "definition": "something that is very easy to do"
+  },
+  "a ray of sunshine": {
+    "definition": "someone or something that brings joy or positivity"
+  },
+  "a silver lining": {
+    "definition": "a positive aspect of a negative situation"
+  },
+  "a storm in a teacup": {
+    "definition": "a lot of fuss about a trivial matter"
+  },
+  "a taste of one's own medicine": {
+    "definition": "to experience the same unpleasant treatment that one has given to others"
+  },
+  // ...
+ },
+  "b": {
+  "banana": {
+    "definition": "a long, curved fruit",
+    "synonyms": ["fruit", "produce"],
+    "antonyms": ["vegetable"]
+  },
+  "bear": {
+    "definition": "a large, carnivorous mammal",
+    "synonyms": ["mammal", "animal"],
+    "antonyms": ["reptile"]
+  },
+  "bounty": {
+    "definition": "a generous or abundant supply",
+    "synonyms": ["abundance", "plenty"],
+    "antonyms": ["scarcity", "lack"]
+  },
+  "brave": {
+    "definition": "showing courage or strength",
+    "synonyms": ["courageous", "fearless"],
+    "antonyms": ["cowardly", "timid"]
+  },
+  "breeze": {
+    "definition": "a gentle wind",
+    "synonyms": ["wind", "gust"],
+    "antonyms": ["storm", "gale"]
+  },
+  "bridge": {
+    "definition": "a structure spanning a gap",
+    "synonyms": ["structure", "crossing"],
+    "antonyms": ["barrier", "obstacle"]
+  },
+  "blossom": {
+    "definition": "a flower, especially one that is showy",
+    "synonyms": ["flower", "bloom"],
+    "antonyms": ["wither", "decay"]
+  },
+  "bliss": {
+    "definition": "a state of supreme happiness",
+    "synonyms": ["happiness", "joy"],
+    "antonyms": ["misery", "sorrow"]
+  },
+  "bolt": {
+    "definition": "a sudden, swift movement",
+    "synonyms": ["sudden", "swift"],
+    "antonyms": ["slow", "gradual"]
+  },
+  "boundary": {
+    "definition": "a line or limit that marks the edge",
+    "synonyms": ["limit", "border"],
+    "antonyms": ["center", "middle"]
+  },
+  "benevolent": {
+    "definition": "well-meaning and kindly",
+    "synonyms": ["kind", "charitable"],
+    "antonyms": ["malevolent", "unkind"]
+  },
+  "belligerent": {
+    "definition": "hostile and aggressive",
+    "synonyms": ["aggressive", "combative"],
+    "antonyms": ["peaceful", "friendly"]
+  },
+  "bountiful": {
+    "definition": "large in quantity; abundant",
+    "synonyms": ["abundant", "plentiful"],
+    "antonyms": ["scarce", "meager"]
+  },
+  "buoyant": {
+    "definition": "able to float; cheerful and optimistic",
+    "synonyms": ["floatable", "lighthearted"],
+    "antonyms": ["sinking", "depressed"]
+  },
+  "banal": {
+    "definition": "so lacking in originality as to be obvious and boring",
+    "synonyms": ["trite", "commonplace"],
+    "antonyms": ["original", "unusual"]
+  },
+  "behemoth": {
+    "definition": "a huge or monstrous creature; something enormous in size or power",
+    "synonyms": ["giant", "colossus"],
+    "antonyms": ["dwarf", "mite"]
+  },
+  "benign": {
+    "definition": "gentle and kind; not harmful in effect",
+    "synonyms": ["harmless", "benevolent"],
+    "antonyms": ["malignant", "harmful"]
+  },
+  "blatant": {
+    "definition": "done openly and unashamedly; very obvious",
+    "synonyms": ["flagrant", "obvious"],
+    "antonyms": ["subtle", "inconspicuous"]
+  },
+  "bolster": {
+    "definition": "to support or strengthen",
+    "synonyms": ["reinforce", "boost"],
+    "antonyms": ["undermine", "weaken"]
+  },
+  "boisterous": {
+    "definition": "noisy, energetic, and cheerful; rowdy",
+    "synonyms": ["lively", "rowdy"],
+    "antonyms": ["calm", "quiet"]
+  },
+  "abstruse": {
+    "definition": "difficult to understand; obscure",
+    "synonyms": ["complex", "enigmatic"],
+    "antonyms": ["simple", "clear"]
+  },
+  "brevity": {
+    "definition": "concise and exact use of words in writing or speech",
+    "synonyms": ["conciseness", "shortness"],
+    "antonyms": ["lengthiness", "verbosity"]
+  },
+  "bland": {
+    "definition": "lacking strong features or characteristics and therefore uninteresting",
+    "synonyms": ["unremarkable", "insipid"],
+    "antonyms": ["exciting", "spicy"]
+  },
+  "bustle": {
+    "definition": "to move in an energetic and busy manner",
+    "synonyms": ["hustle", "commotion"],
+    "antonyms": ["stillness", "calm"]
+  },
+  "baffle": {
+    "definition": "to totally bewilder or perplex",
+    "synonyms": ["confuse", "puzzle"],
+    "antonyms": ["clarify", "understand"]
+  },
+  "bequeath": {
+    "definition": "to leave (a personal estate or one's body) to a person or other beneficiary by a will",
+    "synonyms": ["inherit", "pass on"],
+    "antonyms": ["withhold", "disinherit"]
+  },
+  "balmy": {
+    "definition": "pleasantly warm; mild",
+    "synonyms": ["mild", "temperate"],
+    "antonyms": ["harsh", "cold"]
+  },
+  "banish": {
+    "definition": "to send someone away from a country or place as an official punishment",
+    "synonyms": ["exile", "expel"],
+    "antonyms": ["welcome", "reintegrate"]
+  },
+  "brazen": {
+    "definition": "bold and without shame",
+    "synonyms": ["shameless", "audacious"],
+    "antonyms": ["timid", "shy"]
+  },
+  "brisk": {
+    "definition": "active, fast, and energetic",
+    "synonyms": ["quick", "lively"],
+    "antonyms": ["sluggish", "lethargic"]
+  },
+  "bizarre": {
+    "definition": "very strange or unusual, especially so as to cause interest or amusement",
+    "synonyms": ["strange", "eccentric"],
+    "antonyms": ["normal", "ordinary"]
+  },
+  "blasphemous": {
+    "definition": "showing disrespect or lack of reverence for God or something sacred",
+    "synonyms": ["profane", "irreverent"],
+    "antonyms": ["respectful", "devout"]
+  },
+  "belligerence": {
+    "definition": "aggressive or warlike behavior",
+    "synonyms": ["hostility", "aggression"],
+    "antonyms": ["peacefulness", "friendliness"]
+  },
+  "bumpkin": {
+    "definition": "an unsophisticated or socially awkward person from the countryside",
+    "synonyms": ["country bumpkin", "rube"],
+    "antonyms": ["sophisticate", "urbanite"]
+  },
+  "blighted": {
+    "definition": "damaged, destroyed, or ruined; suffering from a disease",
+    "synonyms": ["damaged", "decayed"],
+    "antonyms": ["healthy", "thriving"]
+  },
+  "bequeath": {
+    "definition": "to leave personal property to someone in a will",
+    "synonyms": ["inherit", "pass on"],
+    "antonyms": ["disinherit", "withhold"]
+  },
+  "bucolic": {
+    "definition": "relating to the pleasant aspects of the countryside and country life",
+    "synonyms": ["pastoral", "rural"],
+    "antonyms": ["urban", "metropolitan"]
+  },
+  "brittle": {
+    "definition": "hard but liable to break or shatter easily",
+    "synonyms": ["fragile", "delicate"],
+    "antonyms": ["tough", "durable"]
+  },
+  "brooding": {
+    "definition": "showing deep unhappiness of thought",
+    "synonyms": ["moody", "pensive"],
+    "antonyms": ["cheerful", "light-hearted"]
+  },
+  "buttress": {
+    "definition": "a structure of stone or brick built against a wall to support or reinforce it",
+    "synonyms": ["support", "reinforce"],
+    "antonyms": ["weaken", "undermine"]
+  },
+  "bombastic": {
+    "definition": "high-sounding but with little meaning; inflated",
+    "synonyms": ["pompous", "grandiose"],
+    "antonyms": ["simple", "unpretentious"]
+  },
+  "beneficiary": {
+    "definition": "a person who derives advantage from something, especially a trust, will, or insurance policy",
+    "synonyms": ["recipient", "heir"],
+    "antonyms": ["donor", "giver"]
+  },
+  "bedeck": {
+    "definition": "to decorate or embellish something",
+    "synonyms": ["decorate", "adorn"],
+    "antonyms": ["strip", "bare"]
+  },
+  "bewilder": {
+    "definition": "to cause someone to become perplexed and confused",
+    "synonyms": ["confuse", "puzzle"],
+    "antonyms": ["clarify", "enlighten"]
+  },
+  "blandishment": {
+    "definition": "a flattering statement or action designed to persuade someone to do something",
+    "synonyms": ["flattery", "coaxing"],
+    "antonyms": ["criticism", "deterrent"]
+  },
+  "bemoan": {
+    "definition": "to express distress or regret over something",
+    "synonyms": ["lament", "complain"],
+    "antonyms": ["celebrate", "rejoice"]
+  },
+  "blithe": {
+    "definition": "showing a casual and cheerful indifference considered to be callous or improper",
+    "synonyms": ["cheerful", "carefree"],
+    "antonyms": ["worried", "troubled"]
+  },
+  "brusque": {
+    "definition": "abrupt or offhand in speech or manner",
+    "synonyms": ["blunt", "curt"],
+    "antonyms": ["polite", "gracious"]
+  },
+  "blunder": {
+    "definition": "a stupid or careless mistake",
+    "synonyms": ["mistake", "error"],
+    "antonyms": ["correctness", "accuracy"]
+  },
+  "besiege": {
+    "definition": "to surround a place with armed forces in order to capture it or force its surrender",
+    "synonyms": ["surround", "blockade"],
+    "antonyms": ["release", "disperse"]
+  },
+  "bizarre": {
+    "definition": "very strange or unusual, especially so as to cause interest or amusement",
+    "synonyms": ["strange", "eccentric"],
+    "antonyms": ["normal", "ordinary"]
+  },
+  "bravado": {
+    "definition": "a show of boldness or confidence intended to impress or intimidate others",
+    "synonyms": ["swagger", "bluster"],
+    "antonyms": ["timidity", "shyness"]
+  },
+  "bilk": {
+    "definition": "to cheat or defraud someone",
+    "synonyms": ["swindle", "deceive"],
+    "antonyms": ["honor", "pay"]
+  },
+  "begrudge": {
+    "definition": "to envy someone for possessing or enjoying something",
+    "synonyms": ["envy", "resent"],
+    "antonyms": ["approve", "generous"]
+  },
+  "berate": {
+    "definition": "to scold or criticize someone angrily",
+    "synonyms": ["scold", "rebuke"],
+    "antonyms": ["praise", "commend"]
+  },
+  "boisterous": {
+    "definition": "noisy, energetic, and cheerful; rowdy",
+    "synonyms": ["lively", "rowdy"],
+    "antonyms": ["calm", "quiet"]
+  },
+  "blight": {
+    "definition": "a plant disease caused by fungi; something that spoils or damages something",
+    "synonyms": ["disease", "decay"],
+    "antonyms": ["health", "restoration"]
+  },
+  "brisket": {
+    "definition": "the breast or lower chest of a cow, used as meat",
+    "synonyms": ["meat", "cut"],
+    "antonyms": ["none"]
+  },
+  "buttress": {
+    "definition": "a structure built against a wall to support or reinforce it",
+    "synonyms": ["support", "reinforce"],
+    "antonyms": ["weaken", "undermine"]
+  },
+  "benign": {
+    "definition": "gentle and kindly; not harmful",
+    "synonyms": ["harmless", "kind"],
+    "antonyms": ["malignant", "harmful"]
+  },
+  "brilliant": {
+    "definition": "exceptionally clever or talented; shining brightly",
+    "synonyms": ["smart", "radiant"],
+    "antonyms": ["dull", "uninspired"]
+  },
+  "barrage": {
+    "definition": "a concentrated artillery bombardment over a wide area; an overwhelming quantity or explosion",
+    "synonyms": ["bombardment", "flood"],
+    "antonyms": ["trickle", "dribble"]
+  },
+  "beguile": {
+    "definition": "to charm or enchant someone, sometimes in a deceptive way",
+    "synonyms": ["charm", "deceive"],
+    "antonyms": ["bore", "disenchant"]
+  },
+  "bivouac": {
+    "definition": "a temporary camp or shelter, especially used by soldiers or mountaineers",
+    "synonyms": ["camp", "encampment"],
+    "antonyms": ["permanent residence", "settlement"]
+  },
+  "blazon": {
+    "definition": "to display prominently or vividly; to herald or proclaim",
+    "synonyms": ["display", "proclaim"],
+    "antonyms": ["conceal", "hide"]
+  },
+  "brusque": {
+    "definition": "abrupt or offhand in speech or manner",
+    "synonyms": ["curt", "blunt"],
+    "antonyms": ["polite", "gracious"]
+  },
+  "baffle": {
+    "definition": "to totally bewilder or confuse",
+    "synonyms": ["confuse", "puzzle"],
+    "antonyms": ["clarify", "understand"]
+  },
+  "burgeon": {
+    "definition": "to begin to grow or increase rapidly; flourish",
+    "synonyms": ["flourish", "expand"],
+    "antonyms": ["decline", "shrink"]
+  },
+  "bewitch": {
+    "definition": "to enchant and delight someone completely; to cast a spell on",
+    "synonyms": ["enchant", "captivate"],
+    "antonyms": ["repel", "disenchant"]
+  },
+  "bluster": {
+    "definition": "to talk or act with noisy swaggering threats; to blow violently",
+    "synonyms": ["boast", "storm"],
+    "antonyms": ["calm", "whisper"]
+  },
+  "blight": {
+    "definition": "a plant disease causing damage; something that spoils or damages",
+    "synonyms": ["disease", "decay"],
+    "antonyms": ["health", "restoration"]
+  },
+  "brash": {
+    "definition": "self-assertive in a rude, noisy, or overbearing way",
+    "synonyms": ["impudent", "audacious"],
+    "antonyms": ["modest", "reserved"]
+  },
+  "beseech": {
+    "definition": "to ask someone urgently and fervently to do something",
+    "synonyms": ["implore", "plead"],
+    "antonyms": ["command", "demand"]
+  },
+  "bastion": {
+    "definition": "a projecting part of a fortification; a stronghold",
+    "synonyms": ["fortification", "stronghold"],
+    "antonyms": ["weakness", "vulnerability"]
+  },
+  "balmy": {
+    "definition": "pleasantly warm",
+    "synonyms": ["mild", "temperate"],
+    "antonyms": ["cold", "chilly"]
+  },
+  "bristle": {
+    "definition": "to react angrily or defensively; short, stiff hairs or fibers",
+    "synonyms": ["fume", "spike"],
+    "antonyms": ["calm", "smooth"]
+  },
+  "burly": {
+    "definition": "big and strong; muscular",
+    "synonyms": ["muscular", "stout"],
+    "antonyms": ["weak", "slim"]
+  },
+  "bemoan": {
+    "definition": "to express sorrow or discontent",
+    "synonyms": ["lament", "mourn"],
+    "antonyms": ["celebrate", "rejoice"]
+  },
+  "bland": {
+    "definition": "lacking strong features or characteristics and therefore uninteresting",
+    "synonyms": ["insipid", "dull"],
+    "antonyms": ["exciting", "flavorful"]
+  },
+  "boon": {
+    "definition": "a thing that is helpful or beneficial",
+    "synonyms": ["benefit", "blessing"],
+    "antonyms": ["disadvantage", "burden"]
+  },
+  "benevolent": {
+    "definition": "well-meaning and kindly",
+    "synonyms": ["kind", "charitable"],
+    "antonyms": ["malevolent", "unkind"]
+  },
+  "bequeath": {
+    "definition": "to leave personal property to someone by a will",
+    "synonyms": ["inherit", "pass on"],
+    "antonyms": ["withhold", "disinherit"]
+  },
+  "bravado": {
+    "definition": "a show of boldness intended to impress or intimidate others",
+    "synonyms": ["swagger", "bluster"],
+    "antonyms": ["timidity", "shyness"]
+  },
+  "blasphemy": {
+    "definition": "the act of speaking sacrilegiously about God or sacred things",
+    "synonyms": ["profanity", "irreverence"],
+    "antonyms": ["reverence", "respect"]
+  },
+  "blunder": {
+    "definition": "a stupid or careless mistake",
+    "synonyms": ["error", "mistake"],
+    "antonyms": ["accuracy", "correctness"]
+  },
+  "bristle": {
+    "definition": "to react angrily or defensively; short, stiff hairs",
+    "synonyms": ["spike", "fume"],
+    "antonyms": ["calm", "smooth"]
+  },
+  "burden": {
+    "definition": "a load, typically a heavy one; a duty or misfortune that causes hardship",
+    "synonyms": ["load", "encumbrance"],
+    "antonyms": ["relief", "ease"]
+  },
+  "blithe": {
+    "definition": "showing a casual and cheerful indifference considered to be callous or improper",
+    "synonyms": ["carefree", "happy"],
+    "antonyms": ["worried", "troubled"]
+  },
+  "bizarre": {
+    "definition": "very strange or unusual",
+    "synonyms": ["eccentric", "weird"],
+    "antonyms": ["normal", "conventional"]
+  },
+  "buffet": {
+    "definition": "to strike repeatedly; a meal where guests serve themselves from a variety of dishes",
+    "synonyms": ["pound", "feast"],
+    "antonyms": ["caress", "simple meal"]
+  },
+  "blandish": {
+    "definition": "to persuade someone to do something by flattery",
+    "synonyms": ["coax", "flatter"],
+    "antonyms": ["criticize", "rebuke"]
+  },
+  "balderdash": {
+    "definition": "senseless talk or writing; nonsense",
+    "synonyms": ["nonsense", "rubbish"],
+    "antonyms": ["sense", "clarity"]
+  },
+  "bustle": {
+    "definition": "to move in an energetic and busy manner; commotion",
+    "synonyms": ["hustle", "activity"],
+    "antonyms": ["stillness", "quiet"]
+  },
+  "bounteous": {
+    "definition": "generously given or giving; abundant",
+    "synonyms": ["generous", "plentiful"],
+    "antonyms": ["scarce", "stingy"]
+  },
+  "baffle": {
+    "definition": "to totally bewilder or confuse",
+    "synonyms": ["confuse", "puzzle"],
+    "antonyms": ["clarify", "enlighten"]
+  },
+  "bale": {
+    "definition": "a large bundle of goods wrapped tightly and secured with twine or hoops",
+    "synonyms": ["bundle", "pack"],
+    "antonyms": ["loose", "unbound"]
+  },
+  "bated": {
+    "definition": "in great suspense; anxiously excited or waiting",
+    "synonyms": ["eager", "suspenseful"],
+    "antonyms": ["calm", "indifferent"]
+  },
+  "berate": {
+    "definition": "to scold or criticize someone angrily",
+    "synonyms": ["scold", "rebuke"],
+    "antonyms": ["praise", "commend"]
+  },
+  "blithe": {
+    "definition": "showing a casual and cheerful indifference considered to be callous or improper",
+    "synonyms": ["carefree", "happy"],
+    "antonyms": ["worried", "troubled"]
+  },
+  "beseech": {
+    "definition": "to ask someone urgently and fervently to do something",
+    "synonyms": ["implore", "plead"],
+    "antonyms": ["demand", "command"]
+  },
+  "break the ice": {
+    "definition": "to initiate conversation in a social setting, often to relieve tension or awkwardness."
+  },
+  "bite the bullet": {
+    "definition": "to endure a painful or otherwise unpleasant situation that is seen as unavoidable."
+  },
+  "burn the midnight oil": {
+    "definition": "to work late into the night."
+  },
+  "bark up the wrong tree": {
+    "definition": "to pursue a mistaken or misguided course of action."
+  },
+  "back to the drawing board": {
+    "definition": "to start over again from the beginning after a failed attempt."
+  },
+  "bend over backwards": {
+    "definition": "to make a great effort to help or accommodate someone."
+  },
+  "break new ground": {
+    "definition": "to do something innovative or unprecedented."
+  },
+  "by the book": {
+    "definition": "following the rules strictly and exactly."
+  },
+  "bring to the table": {
+    "definition": "to contribute something of value to a discussion or negotiation."
+  },
+  "burn bridges": {
+    "definition": "to destroy relationships or connections, making it impossible to return to a previous state."
+  },
+  "blow off steam": {
+    "definition": "to release pent-up energy or emotions, often through physical activity or talking."
+  },
+  "beat around the bush": {
+    "definition": "to avoid the main topic or issue, often by speaking indirectly."
+  },
+  "back to square one": {
+    "definition": "to return to the starting point after a failed or unsuccessful attempt."
+  },
+  "behind the scenes": {
+    "definition": "occurring out of sight or in secret, often referring to hidden efforts or activities."
+  },
+  "bite off more than you can chew": {
+    "definition": "to take on a task that is too difficult or beyond one's capacity."
+  },
+  "bury the hatchet": {
+    "definition": "to make peace or reconcile with someone after a disagreement or conflict."
+  },
+  "break even": {
+    "definition": "to neither gain nor lose money in a financial transaction or situation."
+  },
+  "bring home the bacon": {
+    "definition": "to earn a living or provide the main source of income for a household."
+  },
+  "burn the candle at both ends": {
+    "definition": "to overextend oneself by doing too much, often leading to exhaustion."
+  },
+  "blow your own trumpet": {
+    "definition": "to boast or brag about one's achievements or abilities."
+  },
+  "break the bank": {
+    "definition": "to spend all of one's money or resources, or to cost an excessive amount."
+  },
+  "bend the rules": {
+    "definition": "to allow some flexibility in following the rules, often in a lenient or unofficial way."
+  },
+  "bat an eyelash": {
+    "definition": "to show no emotional reaction, often in response to something surprising or shocking."
+  },
+  "bring to light": {
+    "definition": "to reveal or disclose something that was previously unknown or hidden."
+  },
+  "bite the dust": {
+    "definition": "to fail or be defeated; to die."
+  },
+  "buy time": {
+    "definition": "to delay something in order to gain more time to prepare or decide."
+  },
+  "by the skin of your teeth": {
+    "definition": "to narrowly succeed or avoid something."
+  },
+  "burst at the seams": {
+    "definition": "to be very full or crowded, often to the point of overflowing."
+  },
+  "boil down to": {
+    "definition": "to be essentially a matter of; to be reduced to the most basic elements."
+  },
+  "beyond the pale": {
+    "definition": "unacceptable or outside the bounds of decency or morality."
+  },
+  "bare bones": {
+    "definition": "the most basic or essential elements of something."
+  },
+  "break a leg": {
+    "definition": "a way to wish someone good luck, especially before a performance."
+  },
+  "back in the day": {
+    "definition": "referring to a time in the past, often with nostalgia."
+  },
+  "better late than never": {
+    "definition": "it's better to do something late than not to do it at all."
+  },
+  "bring down the house": {
+    "definition": "to perform extremely well and receive enthusiastic applause."
+  },
+  "ball is in your court": {
+    "definition": "it's now your turn to take action or make a decision."
+  },
+  "beggars can't be choosers": {
+    "definition": "when you're in a difficult situation, you can't be too picky about your options."
+  },
+  "beat the clock": {
+    "definition": "to finish something before a deadline."
+  },
+  "beyond a shadow of a doubt": {
+    "definition": "absolutely certain or sure."
+  },
+  "breathe easy": {
+    "definition": "to relax or feel relief after a stressful situation."
+  },
+  "bark is worse than your bite": {
+    "definition": "someone's words or threats are more intimidating than their actions."
+  },
+  "back to basics": {
+    "definition": "to return to the fundamental aspects of something, often to focus on simplicity and essentials."
+  },
+  "batten down the hatches": {
+    "definition": "to prepare for a difficult or dangerous situation."
+  },
+  "bend over backwards": {
+    "definition": "to make an extraordinary effort to help or accommodate someone."
+  },
+  "blood, sweat, and tears": {
+    "definition": "hard work and effort put into achieving something."
+  },
+  "blow it out of proportion": {
+    "definition": "to exaggerate the significance or impact of something."
+  },
+  "beyond the call of duty": {
+    "definition": "to do more than what is required in a situation, often showing exceptional effort."
+  },
+  "burn the midnight oil": {
+    "definition": "to work late into the night."
+  },
+  "butterflies in your stomach": {
+    "definition": "to feel nervous or anxious, often in anticipation of something."
+  },
+  "by and large": {
+    "definition": "generally speaking; for the most part."
+  },
+},
+"c": {
+  "cactus": {
+    "definition": "a plant with sharp, thick stems",
+    "synonyms": ["plant", "succulent"],
+    "antonyms": ["animal", "mammal"]
+  },
+  "castle": {
+    "definition": "a large, impressive building",
+    "synonyms": ["building", "fortress"],
+    "antonyms": ["hut", "shack"]
+  },
+  "celebrate": {
+    "definition": "to honor or commemorate an occasion",
+    "synonyms": ["honor", "commemorate"],
+    "antonyms": ["mourn", "lament"]
+  },
+  "champion": {
+    "definition": "a person who has won a competition",
+    "synonyms": ["winner", "victor"],
+    "antonyms": ["loser", "defeated"]
+  },
+  "chronicle": {
+    "definition": "a written account of events",
+    "synonyms": ["account", "record"],
+    "antonyms": ["fiction", "novel"]
+  },
+  "circle": {
+    "definition": "a round shape or outline",
+    "synonyms": ["round", "ring"],
+    "antonyms": ["square", "rectangle"]
+  },
+  "clarity": {
+    "definition": "the quality of being clear or easy to understand",
+    "synonyms": ["clearness", "transparency"],
+    "antonyms": ["unclearness", "ambiguity"]
+  },
+  "classic": {
+    "definition": "a work of art or literature that is considered excellent",
+    "synonyms": ["excellent", "outstanding"],
+    "antonyms": ["mediocre", "average"]
+  },
+  "climb": {
+    "definition": "to ascend or rise using one's hands and feet",
+    "synonyms": ["ascend", "rise"],
+    "antonyms": ["descend", "fall"]
+  },
+  "compassion": {
+    "definition": "a feeling of deep sympathy or concern",
+    "synonyms": ["sympathy", "empathy"],
+    "antonyms": ["indifference", "apathy"]
+  },
+  "cavern": {
+    "definition": "a large cave or chamber in the ground",
+    "synonyms": ["cave", "grotto"],
+    "antonyms": ["surface", "outdoor"]
+  },
+  "contemplate": {
+    "definition": "to think deeply about something",
+    "synonyms": ["ponder", "consider"],
+    "antonyms": ["ignore", "disregard"]
+  },
+  "cynical": {
+    "definition": "believing that people are motivated by self-interest; distrustful of human sincerity",
+    "synonyms": ["skeptical", "distrustful"],
+    "antonyms": ["trustful", "idealistic"]
+  },
+  "concord": {
+    "definition": "agreement or harmony between people or groups",
+    "synonyms": ["agreement", "harmony"],
+    "antonyms": ["discord", "conflict"]
+  },
+  "curiosity": {
+    "definition": "a strong desire to know or learn something",
+    "synonyms": ["inquisitiveness", "interest"],
+    "antonyms": ["indifference", "apathy"]
+  },
+  "commend": {
+    "definition": "to praise formally or officially",
+    "synonyms": ["praise", "recommend"],
+    "antonyms": ["criticize", "condemn"]
+  },
+  "comprehend": {
+    "definition": "to grasp mentally; to understand",
+    "synonyms": ["understand", "grasp"],
+    "antonyms": ["misunderstand", "confuse"]
+  },
+  "conceal": {
+    "definition": "to hide something or keep it secret",
+    "synonyms": ["hide", "cover"],
+    "antonyms": ["reveal", "disclose"]
+  },
+  "cumbersome": {
+    "definition": "large or heavy and therefore difficult to carry or use",
+    "synonyms": ["awkward", "clumsy"],
+    "antonyms": ["light", "manageable"]
+  },
+  "camaraderie": {
+    "definition": "mutual trust and friendship among people who spend a lot of time together",
+    "synonyms": ["friendship", "companionship"],
+    "antonyms": ["animosity", "hostility"]
+  },
+  "candid": {
+    "definition": "truthful and straightforward; frank",
+    "synonyms": ["honest", "open"],
+    "antonyms": ["deceptive", "guarded"]
+  },
+  "carnivorous": {
+    "definition": "feeding on other animals; meat-eating",
+    "synonyms": ["meat-eating", "predatory"],
+    "antonyms": ["herbivorous", "plant-eating"]
+  },
+  "copious": {
+    "definition": "abundant in supply or quantity",
+    "synonyms": ["abundant", "plentiful"],
+    "antonyms": ["scarce", "meager"]
+  },
+  "cumbersome": {
+    "definition": "large or heavy and therefore difficult to carry or use",
+    "synonyms": ["awkward", "bulky"],
+    "antonyms": ["light", "manageable"]
+  },
+  "conducive": {
+    "definition": "making a certain situation or outcome likely or possible",
+    "synonyms": ["favorable", "beneficial"],
+    "antonyms": ["detrimental", "harmful"]
+  },
+  "collaborate": {
+    "definition": "to work jointly on an activity or project",
+    "synonyms": ["cooperate", "work together"],
+    "antonyms": ["compete", "oppose"]
+  },
+  "cathartic": {
+    "definition": "providing psychological relief through the open expression of strong emotions",
+    "synonyms": ["purging", "cleansing"],
+    "antonyms": ["repressing", "suppressing"]
+  },
+  "chronic": {
+    "definition": "persisting for a long time or constantly recurring",
+    "synonyms": ["persistent", "long-term"],
+    "antonyms": ["acute", "temporary"]
+  },
+  "crucial": {
+    "definition": "decisive or critical, especially in the success or failure of something",
+    "synonyms": ["critical", "vital"],
+    "antonyms": ["insignificant", "trivial"]
+  },
+  "culpable": {
+    "definition": "deserving blame or censure; guilty",
+    "synonyms": ["guilty", "blameworthy"],
+    "antonyms": ["innocent", "blameless"]
+  },
+  "catalyst": {
+    "definition": "a substance that increases the rate of a chemical reaction without itself undergoing any permanent chemical change; something that triggers change",
+    "synonyms": ["accelerator", "stimulus"],
+    "antonyms": ["inhibitor", "deterrent"]
+  },
+  "complacent": {
+    "definition": "showing smug or uncritical satisfaction with oneself or one's achievements",
+    "synonyms": ["self-satisfied", "content"],
+    "antonyms": ["dissatisfied", "unsettled"]
+  },
+  "chaotic": {
+    "definition": "in a state of complete disorder and confusion",
+    "synonyms": ["disordered", "turbulent"],
+    "antonyms": ["orderly", "organized"]
+  },
+  "cynicism": {
+    "definition": "an inclination to believe that people are motivated purely by self-interest; skepticism",
+    "synonyms": ["skepticism", "mistrust"],
+    "antonyms": ["trust", "optimism"]
+  },
+  "contrive": {
+    "definition": "to create or bring about by deliberate use of skill and artifice",
+    "synonyms": ["engineer", "devising"],
+    "antonyms": ["improvise", "happen"]
+  },
+  "convivial": {
+    "definition": "friendly, sociable, and cheerful",
+    "synonyms": ["sociable", "festive"],
+    "antonyms": ["antisocial", "unfriendly"]
+  },
+  "cogent": {
+    "definition": "clear, logical, and convincing",
+    "synonyms": ["persuasive", "convincing"],
+    "antonyms": ["unconvincing", "weak"]
+  },
+  "confluence": {
+    "definition": "the junction of two rivers; the merging of two or more things",
+    "synonyms": ["meeting", "junction"],
+    "antonyms": ["divergence", "separation"]
+  },
+  "cumbersome": {
+    "definition": "large or heavy and therefore difficult to carry or use",
+    "synonyms": ["awkward", "bulky"],
+    "antonyms": ["light", "manageable"]
+  },
+  "culminate": {
+    "definition": "to reach the highest point or final stage",
+    "synonyms": ["reach", "climax"],
+    "antonyms": ["begin", "commence"]
+  },
+  "crux": {
+    "definition": "the most important or decisive point",
+    "synonyms": ["essence", "core"],
+    "antonyms": ["periphery", "triviality"]
+  },
+  "caricature": {
+    "definition": "a exaggerated portrayal of someone or something, often for comic effect",
+    "synonyms": ["exaggeration", "parody"],
+    "antonyms": ["realistic depiction", "accuracy"]
+  },
+  "corrode": {
+    "definition": "to destroy or damage something gradually, especially by chemical action",
+    "synonyms": ["rust", "erode"],
+    "antonyms": ["protect", "preserve"]
+  },
+  "cosmopolitan": {
+    "definition": "familiar with and at ease in many different countries and cultures",
+    "synonyms": ["worldly", "sophisticated"],
+    "antonyms": ["provincial", "insular"]
+  },
+  "coalesce": {
+    "definition": "to come together to form one mass or whole",
+    "synonyms": ["merge", "unite"],
+    "antonyms": ["separate", "dissolve"]
+  },
+  "cumbersome": {
+    "definition": "large or heavy and therefore difficult to carry or use",
+    "synonyms": ["awkward", "bulky"],
+    "antonyms": ["light", "manageable"]
+  },
+  "concur": {
+    "definition": "to agree or have the same opinion",
+    "synonyms": ["agree", "consent"],
+    "antonyms": ["disagree", "oppose"]
+  },
+  "culpable": {
+    "definition": "deserving blame or censure; guilty",
+    "synonyms": ["guilty", "blameworthy"],
+    "antonyms": ["innocent", "blameless"]
+  },
+  "cathartic": {
+    "definition": "providing psychological relief through the open expression of strong emotions",
+    "synonyms": ["cleansing", "purging"],
+    "antonyms": ["repressing", "suppressing"]
+  },
+  "credulous": {
+    "definition": "having too great a readiness to believe things",
+    "synonyms": ["gullible", "naive"],
+    "antonyms": ["skeptical", "disbelieving"]
+  },
+  "contemplate": {
+    "definition": "to think deeply about something",
+    "synonyms": ["ponder", "consider"],
+    "antonyms": ["ignore", "disregard"]
+  },
+  "clandestine": {
+    "definition": "kept secret or done secretly, especially for illicit purposes",
+    "synonyms": ["secret", "hidden"],
+    "antonyms": ["open", "public"]
+  },
+  "catharsis": {
+    "definition": "the process of releasing strong or repressed emotions",
+    "synonyms": ["release", "purging"],
+    "antonyms": ["suppression", "repression"]
+  },
+  "congenial": {
+    "definition": "pleasant because of a personality, qualities, or interests that are similar to one's own",
+    "synonyms": ["agreeable", "friendly"],
+    "antonyms": ["unpleasant", "hostile"]
+  },
+  "constrict": {
+    "definition": "to make narrower, especially by encircling pressure",
+    "synonyms": ["tighten", "contract"],
+    "antonyms": ["loosen", "expand"]
+  },
+  "cohesive": {
+    "definition": "characterized by or causing cohesion; sticking together",
+    "synonyms": ["united", "integrated"],
+    "antonyms": ["disjointed", "fragmented"]
+  },
+  "culminate": {
+    "definition": "to reach the highest point or final stage",
+    "synonyms": ["climax", "peak"],
+    "antonyms": ["begin", "commence"]
+  },
+  "chivalrous": {
+    "definition": "having the qualities of an ideal knight; brave, honorable, and courteous",
+    "synonyms": ["gallant", "noble"],
+    "antonyms": ["unmannerly", "cowardly"]
+  },
+  "crisp": {
+    "definition": "firm, dry, and brittle; also used to describe something fresh and clear",
+    "synonyms": ["fresh", "crunchy"],
+    "antonyms": ["soggy", "limp"]
+  },
+  "curtail": {
+    "definition": "to reduce in extent or quantity; to impose a restriction on",
+    "synonyms": ["shorten", "limit"],
+    "antonyms": ["extend", "increase"]
+  },
+  "catalyst": {
+    "definition": "a substance that accelerates a chemical reaction or an agent that triggers significant change",
+    "synonyms": ["accelerator", "stimulus"],
+    "antonyms": ["inhibitor", "deterrent"]
+  },
+  "chronic": {
+    "definition": "persisting for a long time or constantly recurring",
+    "synonyms": ["persistent", "long-term"],
+    "antonyms": ["acute", "temporary"]
+  },
+  "concise": {
+    "definition": "giving a lot of information clearly and in a few words",
+    "synonyms": ["brief", "succinct"],
+    "antonyms": ["verbose", "wordy"]
+  },
+  "cumbersome": {
+    "definition": "large or heavy and therefore difficult to carry or use",
+    "synonyms": ["awkward", "bulky"],
+    "antonyms": ["light", "manageable"]
+  },
+  "cultivate": {
+    "definition": "to prepare and use land for crops or gardening; to foster growth or development",
+    "synonyms": ["grow", "develop"],
+    "antonyms": ["neglect", "destroy"]
+  },
+  "cogitate": {
+    "definition": "to think deeply about something",
+    "synonyms": ["ponder", "meditate"],
+    "antonyms": ["ignore", "disregard"]
+  },
+  "credibility": {
+    "definition": "the quality of being trusted and believed in",
+    "synonyms": ["trustworthiness", "reliability"],
+    "antonyms": ["doubtfulness", "unreliability"]
+  },
+  "conform": {
+    "definition": "to comply with rules, standards, or laws",
+    "synonyms": ["adhere", "comply"],
+    "antonyms": ["differ", "disobey"]
+  },
+  "contemplate": {
+    "definition": "to think about deeply and at length",
+    "synonyms": ["ponder", "consider"],
+    "antonyms": ["disregard", "ignore"]
+  },
+  "coerce": {
+    "definition": "to persuade an unwilling person to do something by using force or threats",
+    "synonyms": ["pressure", "force"],
+    "antonyms": ["persuade", "convince"]
+  },
+  "camaraderie": {
+    "definition": "mutual trust and friendship among people who spend a lot of time together",
+    "synonyms": ["friendship", "companionship"],
+    "antonyms": ["animosity", "hostility"]
+  },
+  "cogent": {
+    "definition": "clear, logical, and convincing",
+    "synonyms": ["persuasive", "compelling"],
+    "antonyms": ["unconvincing", "weak"]
+  },
+  "concise": {
+    "definition": "giving a lot of information clearly and in a few words",
+    "synonyms": ["brief", "succinct"],
+    "antonyms": ["verbose", "wordy"]
+  },
+  "censure": {
+    "definition": "express severe disapproval of someone or something, typically in a formal statement",
+    "synonyms": ["condemn", "criticize"],
+    "antonyms": ["praise", "approve"]
+  },
+  "circumvent": {
+    "definition": "to find a way around (an obstacle or restriction)",
+    "synonyms": ["avoid", "bypass"],
+    "antonyms": ["confront", "face"]
+  },
+  "cynical": {
+    "definition": "believing that people are motivated by self-interest; distrustful of human sincerity",
+    "synonyms": ["skeptical", "mistrustful"],
+    "antonyms": ["trustful", "idealistic"]
+  },
+  "correlate": {
+    "definition": "to show or establish the relationship between two things",
+    "synonyms": ["relate", "associate"],
+    "antonyms": ["disconnect", "separate"]
+  },
+  "convivial": {
+    "definition": "friendly, sociable, and cheerful",
+    "synonyms": ["sociable", "gregarious"],
+    "antonyms": ["unsociable", "aloof"]
+  },
+  "conducive": {
+    "definition": "making a certain situation or outcome likely or possible",
+    "synonyms": ["favorable", "beneficial"],
+    "antonyms": ["detrimental", "hindering"]
+  },
+  "ceremonial": {
+    "definition": "relating to or used for formal events or rituals",
+    "synonyms": ["formal", "ritualistic"],
+    "antonyms": ["informal", "casual"]
+  },
+  "conjecture": {
+    "definition": "an opinion or conclusion formed on the basis of incomplete information",
+    "synonyms": ["guess", "hypothesis"],
+    "antonyms": ["fact", "certainty"]
+  },
+  "cater": {
+    "definition": "to provide food and drink, typically at social events",
+    "synonyms": ["serve", "provide"],
+    "antonyms": ["neglect", "ignore"]
+  },
+  "commendable": {
+    "definition": "deserving praise",
+    "synonyms": ["praiseworthy", "admirable"],
+    "antonyms": ["blameworthy", "reprehensible"]
+  },
+  "circuitous": {
+    "definition": "longer than the most direct way",
+    "synonyms": ["indirect", "winding"],
+    "antonyms": ["direct", "straight"]
+  },
+  "cosmic": {
+    "definition": "relating to the universe or cosmos, especially as distinct from the Earth",
+    "synonyms": ["universal", "astronomical"],
+    "antonyms": ["terrestrial", "earthly"]
+  },
+  "candid": {
+    "definition": "truthful and straightforward; frank",
+    "synonyms": ["honest", "open"],
+    "antonyms": ["deceptive", "guarded"]
+  },
+  "convoluted": {
+    "definition": "extremely complex and difficult to follow",
+    "synonyms": ["intricate", "complicated"],
+    "antonyms": ["simple", "straightforward"]
+  },
+  "culinary": {
+    "definition": "relating to cooking or the kitchen",
+    "synonyms": ["gastronomic", "cookery"],
+    "antonyms": ["non-culinary", "unrelated"]
+  },
+  "clandestine": {
+    "definition": "kept secret or done secretly, especially for illicit purposes",
+    "synonyms": ["secret", "hidden"],
+    "antonyms": ["open", "public"]
+  },
+  "contrived": {
+    "definition": "deliberately created rather than arising naturally or spontaneously",
+    "synonyms": ["artificial", "forced"],
+    "antonyms": ["natural", "spontaneous"]
+  },
+  "contemplate": {
+    "definition": "to think deeply about something",
+    "synonyms": ["ponder", "consider"],
+    "antonyms": ["ignore", "disregard"]
+  },
+  "curate": {
+    "definition": "to select, organize, and look after the items in a collection or exhibit",
+    "synonyms": ["organize", "manage"],
+    "antonyms": ["disorganize", "neglect"]
+  },
+  "concierge": {
+    "definition": "a person who manages or assists guests in a hotel or apartment building",
+    "synonyms": ["attendant", "helper"],
+    "antonyms": ["guest", "visitor"]
+  },
+  "chronicler": {
+    "definition": "a person who writes accounts of important or historical events",
+    "synonyms": ["historian", "reporter"],
+    "antonyms": ["fiction writer", "novelist"]
+  },
+  "collaborate": {
+    "definition": "to work jointly on an activity or project",
+    "synonyms": ["cooperate", "partner"],
+    "antonyms": ["compete", "oppose"]
+  },
+  "cavort": {
+    "definition": "to jump or dance around excitedly",
+    "synonyms": ["frolic", "leap"],
+    "antonyms": ["mope", "stumble"]
+  },
+  "coalesce": {
+    "definition": "to come together to form one mass or whole",
+    "synonyms": ["merge", "unite"],
+    "antonyms": ["separate", "divide"]
+  },
+  "crass": {
+    "definition": "lacking sensitivity, refinement, or intelligence",
+    "synonyms": ["insensitive", "coarse"],
+    "antonyms": ["sensitive", "refined"]
+  },
+  "conflate": {
+    "definition": "to combine two or more things into one",
+    "synonyms": ["merge", "blend"],
+    "antonyms": ["separate", "disentangle"]
+  },
+  "catalyze": {
+    "definition": "to cause or accelerate a reaction or change",
+    "synonyms": ["accelerate", "trigger"],
+    "antonyms": ["slow", "hinder"]
+  },
+  "cut corners": {
+    "definition": "to do something in the easiest or cheapest way, often sacrificing quality"
+  },
+  "call it a day": {
+    "definition": "to stop working on something, usually because the task is completed or enough work has been done"
+  },
+  "crack the code": {
+    "definition": "to solve a difficult problem or decipher something"
+  },
+  "caught red-handed": {
+    "definition": "to be caught in the act of doing something wrong or illegal"
+  },
+  "come full circle": {
+    "definition": "to return to the original point or situation after a series of events or changes"
+  },
+  "cross that bridge when you come to it": {
+    "definition": "to deal with a problem only when it arises, not before"
+  },
+  "cry over spilled milk": {
+    "definition": "to waste time worrying about something that has already happened and cannot be changed"
+  },
+  "curiosity killed the cat": {
+    "definition": "being too inquisitive can lead to trouble or danger"
+  },
+  "come to terms with": {
+    "definition": "to accept a difficult or unpleasant situation"
+  },
+  "cast a long shadow": {
+    "definition": "to have a lasting influence or effect on something"
+  },
+  "chip off the old block": {
+    "definition": "a person who resembles one of their parents in character or behavior"
+  },
+  "clear the air": {
+    "definition": "to remove any doubts or hard feelings by talking openly about them"
+  },
+  "come clean": {
+    "definition": "to confess or admit to something, usually a wrongdoing"
+  },
+  "cut to the chase": {
+    "definition": "to get to the point or the most important part of something quickly"
+  },
+  "close but no cigar": {
+    "definition": "almost successful but not quite achieving the goal"
+  },
+  "cost an arm and a leg": {
+    "definition": "to be extremely expensive"
+  },
+  "cold shoulder": {
+    "definition": "to intentionally ignore someone or treat them in an unfriendly way"
+  },
+  "come out of the woodwork": {
+    "definition": "to appear or emerge unexpectedly, often after a long absence"
+  },
+  "cut the mustard": {
+    "definition": "to meet expectations or perform adequately"
+  },
+  "come rain or shine": {
+    "definition": "no matter what happens or regardless of the circumstances"
+  },
+  "change of heart": {
+    "definition": "a reversal of one's feelings or opinions about something"
+  },
+  "catch someone off guard": {
+    "definition": "to surprise someone, usually in a way they are unprepared for"
+  },
+  "come to a head": {
+    "definition": "to reach a critical or crucial point, especially of a conflict or situation"
+  },
+  "come into play": {
+    "definition": "to begin to have an effect or influence on something"
+  },
+  "cut someone some slack": {
+    "definition": "to give someone a break or not be too critical of them"
+  },
+  "come to grips with": {
+    "definition": "to begin to understand and deal with something difficult"
+  },
+  "catch one's breath": {
+    "definition": "to pause or rest to regain normal breathing or composure"
+  },
+  "cast the first stone": {
+    "definition": "to be the first to criticize or accuse someone"
+  },
+  "crack under pressure": {
+    "definition": "to lose control or fail because of stress or difficulty"
+  },
+  "come out on top": {
+    "definition": "to be successful or victorious in a situation"
+  },
+  "carry the torch": {
+    "definition": "to continue a tradition or lead a movement"
+  },
+  "cut and dried": {
+    "definition": "clear and straightforward, with no room for doubt or change"
+  },
+  "come out of the closet": {
+    "definition": "to openly declare or reveal something, especially one's sexual orientation"
+  },
+  "curb your enthusiasm": {
+    "definition": "to restrain or limit your excitement or eagerness"
+  },
+  "cross your fingers": {
+    "definition": "to hope for good luck or a positive outcome"
+  },
+  "cut to the bone": {
+    "definition": "to reduce something to its absolute minimum, often referring to costs or resources"
+  },
+  "come what may": {
+    "definition": "regardless of what happens; whatever the outcome"
+  },
+  "clean slate": {
+    "definition": "a fresh start without any previous mistakes or issues"
+  },
+  "call the shots": {
+    "definition": "to be in control or make the important decisions"
+  },
+  "chew the fat": {
+    "definition": "to engage in casual or leisurely conversation"
+  },
+  "cast a wide net": {
+    "definition": "to try many different things or cover a large area in order to achieve something"
+  },
+  "come full circle": {
+    "definition": "to return to the original position or situation after going through a series of developments or changes"
+  },
+  "cut your losses": {
+    "definition": "to stop doing something that is unsuccessful before it becomes worse"
+  },
+  "call it quits": {
+    "definition": "to stop doing something, especially because it is not successful or worth continuing"
+  },
+  "cross the line": {
+    "definition": "to go beyond what is considered acceptable behavior"
+  },
+  "cold feet": {
+    "definition": "sudden hesitation or fear before doing something risky or important"
+  },
+  "come to mind": {
+    "definition": "to suddenly think of something"
+  },
+  "count your blessings": {
+    "definition": "to be thankful for what you have rather than focusing on what you do not have"
+  },
+  "cut from the same cloth": {
+    "definition": "to be very similar in character or behavior"
+  },
+  "close ranks": {
+    "definition": "to unite and support each other, especially in response to outside criticism or pressure"
+  },
+},
+"d": {
+  "daffodil": {
+    "definition": "a bright yellow flower",
+    "synonyms": ["flower", "bloom"],
+    "antonyms": ["weed", "thistle"]
+  },
+  "dawn": {
+    "definition": "the time of day when the sun rises",
+    "synonyms": ["morning", "daybreak"],
+    "antonyms": ["dusk", "nightfall"]
+  },
+  "decide": {
+    "definition": "to make a choice or come to a conclusion",
+    "synonyms": ["choose", "conclude"],
+    "antonyms": ["hesitate", "vacillate"]
+  },
+  "dedicate": {
+    "definition": "to devote or commit something to a particular purpose",
+    "synonyms": ["devote", "commit"],
+    "antonyms": ["abandon", "neglect"]
+  },
+  "delight": {
+    "definition": "a feeling of great pleasure or enjoyment",
+    "synonyms": ["pleasure", "joy"],
+    "antonyms": ["displeasure", "unhappiness"]
+  },
+  "density": {
+    "definition": "the state or quality of being thick or heavy",
+    "synonyms": ["thickness", "heaviness"],
+    "antonyms": ["lightness", "thinness"]
+  },
+  "design": {
+    "definition": "a plan or concept for something",
+    "synonyms": ["plan", "concept"],
+    "antonyms": ["improvisation", "spontaneity"]
+  },
+  "dilemma": {
+    "definition": "a situation in which a difficult choice has to be made",
+    "synonyms": ["problem", "predicament"],
+    "antonyms": ["opportunity", "advantage"]
+  },
+  "dolphin": {
+    "definition": "a highly intelligent aquatic mammal",
+    "synonyms": ["mammal", "marine animal"],
+    "antonyms": ["fish", "reptile"]
+  },
+  "dream": {
+    "definition": "a series of thoughts or images in the mind during sleep",
+    "synonyms": ["vision", "imagination"],
+    "antonyms": ["reality", "wakefulness"]
+  },
+  "dapple": {
+    "definition": "to mark with spots or patches of color",
+    "synonyms": ["spot", "mottle"],
+    "antonyms": ["uniform", "solid"]
+  },
+  "defer": {
+    "definition": "to put off to a later time; to submit to someone else's wishes",
+    "synonyms": ["postpone", "submit"],
+    "antonyms": ["advance", "override"]
+  },
+  "diligent": {
+    "definition": "showing care and conscientiousness in one's work or duties",
+    "synonyms": ["persistent", "industrious"],
+    "antonyms": ["lazy", "negligent"]
+  },
+  "dynamic": {
+    "definition": "characterized by constant change, activity, or progress",
+    "synonyms": ["energetic", "vibrant"],
+    "antonyms": ["static", "inactive"]
+  },
+  "dormant": {
+    "definition": "having normal physical functions suspended or slowed down for a period of time",
+    "synonyms": ["inactive", "sleeping"],
+    "antonyms": ["active", "awake"]
+  },
+  "dismay": {
+    "definition": "to cause someone to feel distress or anxiety",
+    "synonyms": ["distress", "alarm"],
+    "antonyms": ["comfort", "reassure"]
+  },
+  "decipher": {
+    "definition": "to convert (a text written in code) into normal language; to interpret",
+    "synonyms": ["decode", "interpret"],
+    "antonyms": ["encode", "misinterpret"]
+  },
+  "discord": {
+    "definition": "disagreement between people; lack of harmony",
+    "synonyms": ["conflict", "dissonance"],
+    "antonyms": ["harmony", "agreement"]
+  },
+  "discreet": {
+    "definition": "careful and prudent in one's speech or actions",
+    "synonyms": ["tactful", "reserved"],
+    "antonyms": ["indiscreet", "blatant"]
+  },
+  "detract": {
+    "definition": "to reduce the worth or value of something",
+    "synonyms": ["diminish", "lessen"],
+    "antonyms": ["enhance", "increase"]
+  },
+  "discrepancy": {
+    "definition": "a lack of compatibility or similarity between two or more facts",
+    "synonyms": ["inconsistency", "difference"],
+    "antonyms": ["consistency", "agreement"]
+  },
+  "divulge": {
+    "definition": "to make known (private or sensitive information)",
+    "synonyms": ["reveal", "disclose"],
+    "antonyms": ["conceal", "hide"]
+  },
+  "deviate": {
+    "definition": "to depart from an established course or norm",
+    "synonyms": ["stray", "depart"],
+    "antonyms": ["conform", "adhere"]
+  },
+  "depot": {
+    "definition": "a place where goods are stored or transported",
+    "synonyms": ["warehouse", "station"],
+    "antonyms": ["outlet", "retail"]
+  },
+  "dormitory": {
+    "definition": "a building providing sleeping quarters for many people",
+    "synonyms": ["residence", "sleeping quarters"],
+    "antonyms": ["apartment", "private room"]
+  },
+  "dilapidated": {
+    "definition": "in a state of disrepair or ruin due to age or neglect",
+    "synonyms": ["ruined", "worn-out"],
+    "antonyms": ["restored", "well-maintained"]
+  },
+  "disparate": {
+    "definition": "essentially different in kind; not allowing comparison",
+    "synonyms": ["distinct", "dissimilar"],
+    "antonyms": ["similar", "comparable"]
+  },
+  "dissipate": {
+    "definition": "to scatter in various directions; to disappear or waste away",
+    "synonyms": ["disperse", "vanish"],
+    "antonyms": ["accumulate", "gather"]
+  },
+  "dismantle": {
+    "definition": "to take apart or strip down",
+    "synonyms": ["take apart", "disassemble"],
+    "antonyms": ["assemble", "construct"]
+  },
+  "detrimental": {
+    "definition": "tending to cause harm",
+    "synonyms": ["harmful", "damaging"],
+    "antonyms": ["beneficial", "advantageous"]
+  },
+  "dynamo": {
+    "definition": "a machine for converting mechanical energy into electrical energy",
+    "synonyms": ["generator", "electric machine"],
+    "antonyms": ["consumer", "drain"]
+  },
+  "draconian": {
+    "definition": "excessively harsh and severe",
+    "synonyms": ["oppressive", "strict"],
+    "antonyms": ["lenient", "mild"]
+  },
+  "dilute": {
+    "definition": "to make a liquid thinner or weaker by adding more liquid to it",
+    "synonyms": ["water down", "thin"],
+    "antonyms": ["concentrate", "strengthen"]
+  },
+  "decipher": {
+    "definition": "to convert (a text written in code) into normal language; to interpret",
+    "synonyms": ["decode", "translate"],
+    "antonyms": ["encode", "obscure"]
+  },
+  "discreet": {
+    "definition": "careful and prudent in one's speech or actions, especially to avoid causing offense or to gain an advantage",
+    "synonyms": ["tactful", "cautious"],
+    "antonyms": ["indiscreet", "blunt"]
+  },
+  "dormant": {
+    "definition": "having normal physical functions suspended or slowed down for a period of time",
+    "synonyms": ["inactive", "sleeping"],
+    "antonyms": ["active", "alert"]
+  },
+  "doppelgänger": {
+    "definition": "a non-biologically related look-alike or double of a living person",
+    "synonyms": ["double", "look-alike"],
+    "antonyms": ["individual", "unique"]
+  },
+  "distill": {
+    "definition": "to purify a liquid by heating it and then cooling the vapor",
+    "synonyms": ["purify", "refine"],
+    "antonyms": ["contaminate", "pollute"]
+  },
+  "deft": {
+    "definition": "neatly skillful and quick in one's movements",
+    "synonyms": ["skillful", "adept"],
+    "antonyms": ["clumsy", "awkward"]
+  },
+  "dissonance": {
+    "definition": "lack of harmony among musical notes; a tension or clash resulting from the combination of two disharmonious elements",
+    "synonyms": ["discord", "disharmony"],
+    "antonyms": ["harmony", "consonance"]
+  },
+  "discreet": {
+    "definition": "careful and prudent in one's speech or actions, especially to keep something confidential or to avoid embarrassment",
+    "synonyms": ["tactful", "cautious"],
+    "antonyms": ["indiscreet", "blunt"]
+  },
+  "deduce": {
+    "definition": "to arrive at a conclusion by reasoning",
+    "synonyms": ["infer", "derive"],
+    "antonyms": ["guess", "speculate"]
+  },
+  "dismantle": {
+    "definition": "to take apart or disassemble",
+    "synonyms": ["disassemble", "deconstruct"],
+    "antonyms": ["assemble", "construct"]
+  },
+  "diminish": {
+    "definition": "to make or become less",
+    "synonyms": ["decrease", "reduce"],
+    "antonyms": ["increase", "amplify"]
+  },
+  "drape": {
+    "definition": "to cover or hang loosely",
+    "synonyms": ["cover", "hang"],
+    "antonyms": ["bare", "uncover"]
+  },
+  "deferential": {
+    "definition": "showing respect and esteem for others",
+    "synonyms": ["respectful", "reverent"],
+    "antonyms": ["disrespectful", "impudent"]
+  },
+  "decisive": {
+    "definition": "having the ability to make decisions quickly and effectively",
+    "synonyms": ["determined", "resolute"],
+    "antonyms": ["indecisive", "hesitant"]
+  },
+  "dormant": {
+    "definition": "inactive or in a state of rest",
+    "synonyms": ["inactive", "hibernating"],
+    "antonyms": ["active", "awake"]
+  },
+  "dilute": {
+    "definition": "to make a liquid thinner or weaker by adding water or another solvent",
+    "synonyms": ["weaken", "water down"],
+    "antonyms": ["concentrate", "strengthen"]
+  },
+  "daunting": {
+    "definition": "intimidating or causing apprehension",
+    "synonyms": ["intimidating", "overwhelming"],
+    "antonyms": ["encouraging", "comforting"]
+  },
+  "drastic": {
+    "definition": "severe or extreme in effect or action",
+    "synonyms": ["extreme", "radical"],
+    "antonyms": ["mild", "moderate"]
+  },
+  "detract": {
+    "definition": "to take away from the worth or value of something",
+    "synonyms": ["diminish", "reduce"],
+    "antonyms": ["enhance", "increase"]
+  },
+  "diplomatic": {
+    "definition": "relating to the conduct of international relations; tactful and sensitive",
+    "synonyms": ["tactful", "political"],
+    "antonyms": ["blunt", "imprudent"]
+  },
+  "discreet": {
+    "definition": "showing careful judgment and restraint in speech or behavior",
+    "synonyms": ["prudent", "subtle"],
+    "antonyms": ["indiscreet", "obvious"]
+  },
+  "delineate": {
+    "definition": "to describe or portray something precisely",
+    "synonyms": ["describe", "outline"],
+    "antonyms": ["obscure", "vague"]
+  },
+  "dilapidate": {
+    "definition": "to cause (a building or structure) to fall into disrepair",
+    "synonyms": ["ruin", "decay"],
+    "antonyms": ["maintain", "repair"]
+  },
+  "defer": {
+    "definition": "to put off to a later time or to submit to someone else's wishes",
+    "synonyms": ["postpone", "yield"],
+    "antonyms": ["advance", "decide"]
+  },
+  "disband": {
+    "definition": "to break up or dissolve an organized group",
+    "synonyms": ["dissolve", "separate"],
+    "antonyms": ["assemble", "unite"]
+  },
+  "dismay": {
+    "definition": "to cause someone to feel worried or disappointed",
+    "synonyms": ["shock", "distress"],
+    "antonyms": ["comfort", "reassure"]
+  },
+  "dappled": {
+    "definition": "marked with spots or patches of color",
+    "synonyms": ["spotted", "mottled"],
+    "antonyms": ["uniform", "solid"]
+  },
+  "divergent": {
+    "definition": "tending to be different or develop in different directions",
+    "synonyms": ["different", "varied"],
+    "antonyms": ["convergent", "similar"]
+  },
+  "denounce": {
+    "definition": "to publicly declare to be wrong or evil",
+    "synonyms": ["condemn", "criticize"],
+    "antonyms": ["praise", "endorse"]
+  },
+  "dominate": {
+    "definition": "to have a commanding influence on; to be the most important or conspicuous person or thing",
+    "synonyms": ["control", "oversee"],
+    "antonyms": ["submit", "yield"]
+  },
+  "deride": {
+    "definition": "to express contempt for; to ridicule",
+    "synonyms": ["mock", "scorn"],
+    "antonyms": ["praise", "respect"]
+  },
+  "deft": {
+    "definition": "neatly skillful and quick in one's movements",
+    "synonyms": ["skillful", "adept"],
+    "antonyms": ["clumsy", "inept"]
+  },
+  "deceive": {
+    "definition": "to cause someone to believe something that is not true",
+    "synonyms": ["mislead", "trick"],
+    "antonyms": ["reveal", "disclose"]
+  },
+  "discrepancy": {
+    "definition": "a lack of compatibility or similarity between two or more facts",
+    "synonyms": ["inconsistency", "difference"],
+    "antonyms": ["consistency", "accord"]
+  },
+  "detract": {
+    "definition": "to reduce or take away the worth or value of something",
+    "synonyms": ["diminish", "reduce"],
+    "antonyms": ["enhance", "increase"]
+  },
+  "dwell": {
+    "definition": "to live in or at a specified place; to think or talk about something for a long time",
+    "synonyms": ["reside", "linger"],
+    "antonyms": ["move", "ignore"]
+  },
+  "drape": {
+    "definition": "to arrange or hang loosely and gracefully",
+    "synonyms": ["hang", "cover"],
+    "antonyms": ["bare", "expose"]
+  },
+  "deplore": {
+    "definition": "to feel or express strong disapproval of something",
+    "synonyms": ["condemn", "regret"],
+    "antonyms": ["approve", "praise"]
+  },
+  "dissonant": {
+    "definition": "lacking harmony; clashing or disagreeable in sound",
+    "synonyms": ["discordant", "harsh"],
+    "antonyms": ["harmonious", "melodious"]
+  },
+  "distraught": {
+    "definition": "deeply upset and agitated",
+    "synonyms": ["distressed", "frantic"],
+    "antonyms": ["calm", "composed"]
+  },
+  "desolate": {
+    "definition": "bleak and empty; abandoned and lonely",
+    "synonyms": ["bleak", "isolated"],
+    "antonyms": ["populated", "cheerful"]
+  },
+  "dawdle": {
+    "definition": "to waste time or move slowly",
+    "synonyms": ["linger", "loiter"],
+    "antonyms": ["hasten", "rush"]
+  },
+  "delineate": {
+    "definition": "to describe or portray something precisely",
+    "synonyms": ["outline", "define"],
+    "antonyms": ["obscure", "blur"]
+  },
+  "discreet": {
+    "definition": "careful and prudent in one's actions or speech",
+    "synonyms": ["tactful", "subtle"],
+    "antonyms": ["indiscreet", "blatant"]
+  },
+  "denigrate": {
+    "definition": "to criticize unfairly; to belittle",
+    "synonyms": ["disparage", "belittle"],
+    "antonyms": ["praise", "esteem"]
+  },
+  "dormant": {
+    "definition": "inactive or in a state of rest",
+    "synonyms": ["inactive", "sleeping"],
+    "antonyms": ["active", "awake"]
+  },
+  "detract": {
+    "definition": "to reduce or take away from the worth or value of something",
+    "synonyms": ["diminish", "subtract"],
+    "antonyms": ["enhance", "add"]
+  },
+  "dawdle": {
+    "definition": "to waste time or move slowly",
+    "synonyms": ["linger", "loiter"],
+    "antonyms": ["hasten", "rush"]
+  },
+  "deferential": {
+    "definition": "showing respect and esteem for others",
+    "synonyms": ["respectful", "reverent"],
+    "antonyms": ["disrespectful", "impudent"]
+  },
+  "debilitate": {
+    "definition": "to make someone very weak and infirm",
+    "synonyms": ["weaken", "cripple"],
+    "antonyms": ["strengthen", "invigorate"]
+  },
+  "dormant": {
+    "definition": "inactive or in a state of rest",
+    "synonyms": ["inactive", "hibernating"],
+    "antonyms": ["active", "awake"]
+  },
+  "deft": {
+    "definition": "neatly skillful and quick in one's movements",
+    "synonyms": ["skillful", "adept"],
+    "antonyms": ["clumsy", "inept"]
+  },
+  "desolate": {
+    "definition": "bleak and empty; abandoned and lonely",
+    "synonyms": ["bleak", "isolated"],
+    "antonyms": ["populated", "cheerful"]
+  },
+  "douse": {
+    "definition": "to extinguish or put out (a fire or flame)",
+    "synonyms": ["extinguish", "soak"],
+    "antonyms": ["ignite", "dry"]
+  },
+  "distract": {
+    "definition": "to divert attention away from something",
+    "synonyms": ["divert", "confuse"],
+    "antonyms": ["focus", "concentrate"]
+  },
+  "divulge": {
+    "definition": "to make known (private or sensitive information)",
+    "synonyms": ["reveal", "disclose"],
+    "antonyms": ["conceal", "hide"]
+  },
+  "drastic": {
+    "definition": "severe or extreme in effect or action",
+    "synonyms": ["extreme", "radical"],
+    "antonyms": ["mild", "moderate"]
+  },
+  "dapple": {
+    "definition": "to mark with spots or patches of color",
+    "synonyms": ["spot", "mottle"],
+    "antonyms": ["uniform", "solid"]
+  },
+  "diligent": {
+    "definition": "showing care and conscientiousness in one's work or duties",
+    "synonyms": ["industrious", "persistent"],
+    "antonyms": ["lazy", "negligent"]
+  },
+  "dubious": {
+    "definition": "hesitating or doubting; not to be relied upon",
+    "synonyms": ["doubtful", "questionable"],
+    "antonyms": ["certain", "reliable"]
+  },
+  "defiant": {
+    "definition": "showing resistance or bold disobedience",
+    "synonyms": ["rebellious", "resistant"],
+    "antonyms": ["submissive", "compliant"]
+  },
+  "dawdle": {
+    "definition": "to waste time or move slowly",
+    "synonyms": ["linger", "delay"],
+    "antonyms": ["hasten", "rush"]
+  },
+  "distill": {
+    "definition": "to purify a liquid by vaporizing it and then condensing it",
+    "synonyms": ["purify", "refine"],
+    "antonyms": ["contaminate", "dirty"]
+  },
+  "dormitory": {
+    "definition": "a building providing sleeping quarters for many people",
+    "synonyms": ["residence", "sleeping quarters"],
+    "antonyms": ["apartment", "private room"]
+  },
+  "dissuade": {
+    "definition": "to persuade someone not to take a particular course of action",
+    "synonyms": ["discourage", "prevent"],
+    "antonyms": ["encourage", "persuade"]
+  },
+  "dilapidate": {
+    "definition": "to cause (a building or structure) to fall into disrepair",
+    "synonyms": ["ruin", "decay"],
+    "antonyms": ["restore", "repair"]
+  },
+  "dismal": {
+    "definition": "depressing; dreary",
+    "synonyms": ["gloomy", "bleak"],
+    "antonyms": ["cheerful", "bright"]
+  },
+},
+"e": {
+  "eagle": {
+    "definition": "a large, powerful bird of prey",
+    "synonyms": ["bird", "raptor"],
+    "antonyms": ["sparrow", "finch"]
+  },
+  "ecstasy": {
+    "definition": "a state of intense happiness or excitement",
+    "synonyms": ["happiness", "joy"],
+    "antonyms": ["misery", "despair"]
+  },
+  "elegant": {
+    "definition": "pleasingly graceful and stylish in appearance",
+    "synonyms": ["graceful", "stylish"],
+    "antonyms": ["clumsy", "awkward"]
+  },
+  "emerald": {
+    "definition": "a bright green gemstone",
+    "synonyms": ["gemstone", "jewel"],
+    "antonyms": ["rock", "pebble"]
+  },
+  "empathy": {
+    "definition": "the ability to understand and share the feelings of others",
+    "synonyms": ["sympathy", "compassion"],
+    "antonyms": ["indifference", "apathy"]
+  },
+  "energy": {
+    "definition": "the ability to be active and do things",
+    "synonyms": ["strength", "vigor"],
+    "antonyms": ["weakness", "fatigue"]
+  },
+  "enigma": {
+    "definition": "a puzzle or mystery that is difficult to solve",
+    "synonyms": ["puzzle", "mystery"],
+    "antonyms": ["solution", "answer"]
+  },
+  "enthusiasm": {
+    "definition": "a feeling of intense excitement and interest",
+    "synonyms": ["excitement", "interest"],
+    "antonyms": ["boredom", "apathy"]
+  },
+  "epic": {
+    "definition": "a long, narrative poem or story",
+    "synonyms": ["poem", "story"],
+    "antonyms": ["short story", "novel"]
+  },
+  "escape": {
+    "definition": "to get away from a place or situation",
+    "synonyms": ["flee", "run away"],
+    "antonyms": ["stay", "remain"]
+  },
+  "effervescent": {
+    "definition": "bubbling with high spirits or enthusiasm",
+    "synonyms": ["bubbly", "excitable"],
+    "antonyms": ["flat", "unenthusiastic"]
+  },
+  "exquisite": {
+    "definition": "extremely beautiful and delicate",
+    "synonyms": ["beautiful", "elegant"],
+    "antonyms": ["ugly", "coarse"]
+  },
+  "expansive": {
+    "definition": "covering a wide area in terms of space or scope; generous or open",
+    "synonyms": ["vast", "extensive"],
+    "antonyms": ["limited", "restricted"]
+  },
+  "elusive": {
+    "definition": "difficult to find, catch, or achieve; difficult to understand",
+    "synonyms": ["fleeting", "ambiguous"],
+    "antonyms": ["obvious", "clear"]
+  },
+  "elevate": {
+    "definition": "to raise or lift something to a higher position; to improve",
+    "synonyms": ["raise", "uplift"],
+    "antonyms": ["lower", "diminish"]
+  },
+  "exemplary": {
+    "definition": "serving as a model or example; outstanding",
+    "synonyms": ["model", "outstanding"],
+    "antonyms": ["mediocre", "poor"]
+  },
+  "eloquent": {
+    "definition": "fluent or persuasive in speaking or writing",
+    "synonyms": ["persuasive", "articulate"],
+    "antonyms": ["inarticulate", "uneloquent"]
+  },
+  "empower": {
+    "definition": "to give someone the authority or power to do something",
+    "synonyms": ["authorize", "enable"],
+    "antonyms": ["weaken", "restrict"]
+  },
+  "encompass": {
+    "definition": "to include comprehensively; to surround and have within",
+    "synonyms": ["include", "surround"],
+    "antonyms": ["exclude", "omit"]
+  },
+  "exasperate": {
+    "definition": "to irritate intensely; to frustrate",
+    "synonyms": ["irritate", "annoy"],
+    "antonyms": ["appease", "calm"]
+  },
+  "exalt": {
+    "definition": "to raise in rank, power, or character; to praise highly",
+    "synonyms": ["elevate", "praise"],
+    "antonyms": ["degrade", "criticize"]
+  },
+  "enchant": {
+    "definition": "to delight or captivate; to put under a spell",
+    "synonyms": ["captivate", "charm"],
+    "antonyms": ["repel", "disenchant"]
+  },
+  "engage": {
+    "definition": "to participate or become involved in; to attract or hold attention",
+    "synonyms": ["participate", "captivate"],
+    "antonyms": ["disengage", "bore"]
+  },
+  "embark": {
+    "definition": "to begin a course of action or journey",
+    "synonyms": ["start", "commence"],
+    "antonyms": ["cease", "terminate"]
+  },
+  "exude": {
+    "definition": "to give off or emit a quality or feeling strongly and openly",
+    "synonyms": ["emit", "radiate"],
+    "antonyms": ["absorb", "retain"]
+  },
+  "efficacious": {
+    "definition": "producing the desired effect or result",
+    "synonyms": ["effective", "successful"],
+    "antonyms": ["ineffective", "unsuccessful"]
+  },
+  "erudite": {
+    "definition": "having or showing great knowledge or learning",
+    "synonyms": ["learned", "scholarly"],
+    "antonyms": ["ignorant", "unlearned"]
+  },
+  "eccentric": {
+    "definition": "unconventional and slightly strange",
+    "synonyms": ["unconventional", "quirky"],
+    "antonyms": ["conventional", "normal"]
+  },
+  "equanimity": {
+    "definition": "mental calmness, especially in difficult situations",
+    "synonyms": ["composure", "serenity"],
+    "antonyms": ["anxiety", "agitation"]
+  },
+  "enthrall": {
+    "definition": "to captivate or hold the attention of completely",
+    "synonyms": ["fascinate", "mesmerize"],
+    "antonyms": ["bore", "disinterest"]
+  },
+  "expeditious": {
+    "definition": "done with speed and efficiency",
+    "synonyms": ["swift", "efficient"],
+    "antonyms": ["slow", "inefficient"]
+  },
+  "eloquence": {
+    "definition": "the art of effective or persuasive speaking or writing",
+    "synonyms": ["articulation", "rhetoric"],
+    "antonyms": ["inarticulateness", "mumbling"]
+  },
+  "ephemeral": {
+    "definition": "lasting for a very short time",
+    "synonyms": ["transitory", "brief"],
+    "antonyms": ["permanent", "enduring"]
+  },
+  "exquisite": {
+    "definition": "extremely beautiful and delicate",
+    "synonyms": ["elegant", "refined"],
+    "antonyms": ["unrefined", "rough"]
+  },
+  "entice": {
+    "definition": "to attract or tempt by offering pleasure or advantage",
+    "synonyms": ["tempt", "lure"],
+    "antonyms": ["repel", "dissuade"]
+  },
+  "exuberant": {
+    "definition": "filled with lively energy and excitement",
+    "synonyms": ["enthusiastic", "spirited"],
+    "antonyms": ["lethargic", "unenthusiastic"]
+  },
+  "elevate": {
+    "definition": "to raise to a higher position or level",
+    "synonyms": ["raise", "uplift"],
+    "antonyms": ["lower", "degrade"]
+  },
+  "enervate": {
+    "definition": "to weaken or drain of energy",
+    "synonyms": ["weaken", "exhaust"],
+    "antonyms": ["energize", "invigorate"]
+  },
+  "expound": {
+    "definition": "to explain in detail",
+    "synonyms": ["explain", "clarify"],
+    "antonyms": ["obscure", "confuse"]
+  },
+  "effulgent": {
+    "definition": "shining brightly; radiant",
+    "synonyms": ["radiant", "brilliant"],
+    "antonyms": ["dull", "dim"]
+  },
+  "effervesce": {
+    "definition": "to give off bubbles; to be lively or enthusiastic",
+    "synonyms": ["bubble", "fizz", "exuberate"],
+    "antonyms": ["flat", "dull"]
+  },
+  "enigma": {
+    "definition": "a person or thing that is mysterious or difficult to understand",
+    "synonyms": ["mystery", "puzzle"],
+    "antonyms": ["clarity", "solution"]
+  },
+  "expansive": {
+    "definition": "covering a wide area; open and communicative",
+    "synonyms": ["extensive", "wide-ranging"],
+    "antonyms": ["restricted", "confined"]
+  },
+  "enthrall": {
+    "definition": "to capture the fascinated attention of",
+    "synonyms": ["captivate", "mesmerize"],
+    "antonyms": ["bore", "disinterest"]
+  },
+  "exonerate": {
+    "definition": "to absolve someone from blame for a fault or wrongdoing",
+    "synonyms": ["absolve", "clear"],
+    "antonyms": ["accuse", "condemn"]
+  },
+  "elucidate": {
+    "definition": "to make something clear; to explain",
+    "synonyms": ["clarify", "explain"],
+    "antonyms": ["confuse", "obscure"]
+  },
+  "eclipse": {
+    "definition": "to overshadow or obscure; an astronomical event",
+    "synonyms": ["overshadow", "block"],
+    "antonyms": ["illuminate", "reveal"]
+  },
+  "elevate": {
+    "definition": "to lift or raise to a higher position",
+    "synonyms": ["raise", "uplift"],
+    "antonyms": ["lower", "diminish"]
+  },
+  "efficacy": {
+    "definition": "the ability to produce a desired or intended result",
+    "synonyms": ["effectiveness", "potency"],
+    "antonyms": ["ineffectiveness", "inefficacy"]
+  },
+  "enervate": {
+    "definition": "to drain of energy or vitality",
+    "synonyms": ["weaken", "exhaust"],
+    "antonyms": ["energize", "invigorate"]
+  },
+  "ephemeral": {
+    "definition": "lasting for a very short time",
+    "synonyms": ["fleeting", "short-lived"],
+    "antonyms": ["perpetual", "enduring"]
+  },
+  "entrenched": {
+    "definition": "firmly established and difficult to change",
+    "synonyms": ["established", "rooted"],
+    "antonyms": ["shifting", "unstable"]
+  },
+  "exemplify": {
+    "definition": "to illustrate or clarify by giving an example",
+    "synonyms": ["illustrate", "demonstrate"],
+    "antonyms": ["obscure", "confuse"]
+  },
+  "expunge": {
+    "definition": "to erase or remove completely",
+    "synonyms": ["erase", "delete"],
+    "antonyms": ["retain", "add"]
+  },
+  "euphoric": {
+    "definition": "intensely happy or joyful",
+    "synonyms": ["elated", "ecstatic"],
+    "antonyms": ["depressed", "miserable"]
+  },
+  "exuberance": {
+    "definition": "the quality of being full of energy, excitement, and cheerfulness",
+    "synonyms": ["enthusiasm", "vitality"],
+    "antonyms": ["lethargy", "apathy"]
+  },
+  "effrontery": {
+    "definition": "shameless or impudent boldness",
+    "synonyms": ["audacity", "presumption"],
+    "antonyms": ["modesty", "shyness"]
+  },
+  "evasive": {
+    "definition": "tending to avoid commitment or self-revelation, especially by responding only indirectly",
+    "synonyms": ["indirect", "ambiguous"],
+    "antonyms": ["direct", "clear"]
+  },
+  "entourage": {
+    "definition": "a group of people attending or surrounding an important person",
+    "synonyms": ["retinue", "group"],
+    "antonyms": ["alone", "isolated"]
+  },
+  "evident": {
+    "definition": "plain or obvious; clearly seen or understood",
+    "synonyms": ["clear", "obvious"],
+    "antonyms": ["unclear", "ambiguous"]
+  },
+  "efficacy": {
+    "definition": "the ability to produce a desired or intended result",
+    "synonyms": ["effectiveness", "potency"],
+    "antonyms": ["ineffectiveness", "inefficacy"]
+  },
+  "entice": {
+    "definition": "to attract or tempt by offering pleasure or advantage",
+    "synonyms": ["lure", "attract"],
+    "antonyms": ["repel", "dissuade"]
+  },
+  "enervate": {
+    "definition": "to weaken or drain of energy",
+    "synonyms": ["weaken", "exhaust"],
+    "antonyms": ["energize", "invigorate"]
+  },
+  "engage": {
+    "definition": "to occupy or attract someone’s interest or attention",
+    "synonyms": ["attract", "involve"],
+    "antonyms": ["bore", "disengage"]
+  },
+  "elevate": {
+    "definition": "to raise or lift something to a higher position",
+    "synonyms": ["raise", "uplift"],
+    "antonyms": ["lower", "diminish"]
+  },
+  "enthralling": {
+    "definition": "captivating or fascinating",
+    "synonyms": ["captivating", "mesmerizing"],
+    "antonyms": ["boring", "uninteresting"]
+  },
+  "esoteric": {
+    "definition": "intended for or likely to be understood by only a small number of people with a specialized knowledge or interest",
+    "synonyms": ["cryptic", "abstruse"],
+    "antonyms": ["simple", "accessible"]
+  },
+  "erode": {
+    "definition": "to gradually wear away or destroy",
+    "synonyms": ["wear away", "deteriorate"],
+    "antonyms": ["build up", "strengthen"]
+  },
+  "exuberant": {
+    "definition": "filled with lively energy and excitement",
+    "synonyms": ["enthusiastic", "cheerful"],
+    "antonyms": ["lethargic", "apathetic"]
+  },
+  "extol": {
+    "definition": "to praise enthusiastically",
+    "synonyms": ["praise", "celebrate"],
+    "antonyms": ["criticize", "denounce"]
+  },
+  "eclipse": {
+    "definition": "to obscure or block light; a celestial event where one body moves into the shadow of another",
+    "synonyms": ["block", "overshadow"],
+    "antonyms": ["illuminate", "reveal"]
+  },
+  "encompass": {
+    "definition": "to include comprehensively; to surround and have within",
+    "synonyms": ["include", "embrace"],
+    "antonyms": ["exclude", "omit"]
+  },
+  "empirical": {
+    "definition": "based on observation or experience rather than theory or pure logic",
+    "synonyms": ["experimental", "observational"],
+    "antonyms": ["theoretical", "abstract"]
+  },
+  "exert": {
+    "definition": "to apply or bring to bear (a force, influence, or quality)",
+    "synonyms": ["apply", "use"],
+    "antonyms": ["withhold", "neglect"]
+  },
+  "euphemism": {
+    "definition": "a mild or indirect word or expression used to replace one considered too harsh or blunt",
+    "synonyms": ["circumlocution", "politeness"],
+    "antonyms": ["bluntness", "directness"]
+  },
+  "exonerate": {
+    "definition": "to absolve someone from blame for a fault or wrongdoing",
+    "synonyms": ["absolve", "clear"],
+    "antonyms": ["accuse", "condemn"]
+  },
+  "embellish": {
+    "definition": "to make something more attractive by adding decorative details",
+    "synonyms": ["decorate", "adorn"],
+    "antonyms": ["strip", "simplify"]
+  },
+  "exult": {
+    "definition": "to show or feel a lively or triumphant joy",
+    "synonyms": ["rejoice", "celebrate"],
+    "antonyms": ["mourn", "lament"]
+  },
+  "enigma": {
+    "definition": "a person or thing that is mysterious or difficult to understand",
+    "synonyms": ["mystery", "puzzle"],
+    "antonyms": ["clarity", "solution"]
+  },
+  "exemplify": {
+    "definition": "to illustrate or clarify by giving an example",
+    "synonyms": ["illustrate", "demonstrate"],
+    "antonyms": ["obscure", "confuse"]
+  },
+  "embark": {
+    "definition": "to begin a journey or start something new",
+    "synonyms": ["commence", "begin"],
+    "antonyms": ["conclude", "end"]
+  },
+  "endure": {
+    "definition": "to suffer something painful or difficult patiently",
+    "synonyms": ["tolerate", "persist"],
+    "antonyms": ["give up", "quit"]
+  },
+  "elaborate": {
+    "definition": "involving many careful details; to explain in more detail",
+    "synonyms": ["detailed", "complex"],
+    "antonyms": ["simple", "basic"]
+  },
+  "enthrall": {
+    "definition": "to captivate or charm completely",
+    "synonyms": ["mesmerize", "captivate"],
+    "antonyms": ["bore", "repel"]
+  },
+  "eradicate": {
+    "definition": "to completely destroy or remove something",
+    "synonyms": ["eliminate", "exterminate"],
+    "antonyms": ["preserve", "maintain"]
+  },
+  "epitome": {
+    "definition": "a person or thing that is a perfect example of a particular quality or type",
+    "synonyms": ["embodiment", "paragon"],
+    "antonyms": ["antithesis", "opposite"]
+  },
+  "elevate": {
+    "definition": "to raise to a higher level or position",
+    "synonyms": ["lift", "promote"],
+    "antonyms": ["lower", "degrade"]
+  },
+  "esteem": {
+    "definition": "respect and admiration, typically for a person",
+    "synonyms": ["respect", "admiration"],
+    "antonyms": ["disdain", "contempt"]
+  },
+  "equivocal": {
+    "definition": "open to more than one interpretation; ambiguous",
+    "synonyms": ["ambiguous", "vague"],
+    "antonyms": ["clear", "definite"]
+  },
+  "expedite": {
+    "definition": "to speed up the progress of something",
+    "synonyms": ["accelerate", "hasten"],
+    "antonyms": ["delay", "hinder"]
+  },
+  "embody": {
+    "definition": "to give a tangible or visible form to an idea, quality, or feeling",
+    "synonyms": ["represent", "symbolize"],
+    "antonyms": ["disembody", "exclude"]
+  },
+  "emulate": {
+    "definition": "to match or surpass someone or something, typically by imitation",
+    "synonyms": ["imitate", "mimic"],
+    "antonyms": ["neglect", "differ"]
+  },
+  "enrich": {
+    "definition": "to improve or enhance the quality or value of something",
+    "synonyms": ["enhance", "improve"],
+    "antonyms": ["impoverish", "degrade"]
+  },
+  "enlist": {
+    "definition": "to join or sign up for something, often for military service",
+    "synonyms": ["recruit", "enroll"],
+    "antonyms": ["discharge", "dismiss"]
+  },
+  "eradicate": {
+    "definition": "to completely destroy or eliminate something",
+    "synonyms": ["eliminate", "exterminate"],
+    "antonyms": ["preserve", "maintain"]
+  },
+  "exemplary": {
+    "definition": "serving as a desirable model or example",
+    "synonyms": ["model", "commendable"],
+    "antonyms": ["unworthy", "inferior"]
+  },
+  "exorbitant": {
+    "definition": "unreasonably high in price or amount",
+    "synonyms": ["excessive", "outrageous"],
+    "antonyms": ["reasonable", "moderate"]
+  },
+  "exasperate": {
+    "definition": "to irritate intensely; to infuriate",
+    "synonyms": ["irritate", "annoy"],
+    "antonyms": ["calm", "soothe"]
+  },
+  "evoke": {
+    "definition": "to bring or recall a feeling, memory, or image to the mind",
+    "synonyms": ["summon", "provoke"],
+    "antonyms": ["suppress", "ignore"]
+  },
+  "exceed": {
+    "definition": "to go beyond a limit or expectation",
+    "synonyms": ["surpass", "outstrip"],
+    "antonyms": ["fall short", "fail"]
+  },
+},
+"f": {
+  "fantasy": {
+    "definition": "a product of imagination, not based in reality",
+    "synonyms": ["imagination", "fiction"],
+    "antonyms": ["reality", "fact"]
+  },
+  "fearless": {
+    "definition": "showing no fear, brave",
+    "synonyms": ["brave", "courageous"],
+    "antonyms": ["cowardly", "timid"]
+  },
+  "fiddle": {
+    "definition": "to play a stringed instrument, especially a violin",
+    "synonyms": ["play", "strum"],
+    "antonyms": ["stop", "cease"]
+  },
+  "flamboyant": {
+    "definition": "conspicuously dashing and colorful, showy",
+    "synonyms": ["colorful", "showy"],
+    "antonyms": ["plain", "dull"]
+  },
+  "flawless": {
+    "definition": "having no imperfections or defects",
+    "synonyms": ["perfect", "impeccable"],
+    "antonyms": ["imperfect", "flawed"]
+  },
+  "flicker": {
+    "definition": "to shine or burn unsteadily, to flutter",
+    "synonyms": ["flutter", "glimmer"],
+    "antonyms": ["steady", "constant"]
+  },
+  "floral": {
+    "definition": "relating to flowers or blossoms",
+    "synonyms": ["flowery", "botanical"],
+    "antonyms": ["faunal", "zoological"]
+  },
+  "fluid": {
+    "definition": "able to flow or change shape easily",
+    "synonyms": ["liquid", "flexible"],
+    "antonyms": ["solid", "rigid"]
+  },
+  "foolish": {
+    "definition": "lacking good sense or judgment",
+    "synonyms": ["silly", "ridiculous"],
+    "antonyms": ["wise", "prudent"]
+  },
+  "frenzy": {
+    "definition": "a state of intense excitement or wild activity",
+    "synonyms": ["excitement", "chaos"],
+    "antonyms": ["calm", "serenity"]
+  },
+},
+"g": {
+  "gigantic": {
+    "definition": "extremely large or enormous",
+    "synonyms": ["huge", "enormous"],
+    "antonyms": ["small", "tiny"]
+  },
+  "glamorous": {
+    "definition": "attractive and exciting, often in a way that is not natural",
+    "synonyms": ["attractive", "stylish"],
+    "antonyms": ["plain", "dull"]
+  },
+  "gloomy": {
+    "definition": "having a depressing or unpleasant atmosphere",
+    "synonyms": ["dark", "dreary"],
+    "antonyms": ["bright", "cheerful"]
+  },
+  "gorgeous": {
+    "definition": "very beautiful or attractive",
+    "synonyms": ["beautiful", "stunning"],
+    "antonyms": ["ugly", "unattractive"]
+  },
+  "graceful": {
+    "definition": "moving or done with elegance and beauty",
+    "synonyms": ["elegant", "refined"],
+    "antonyms": ["clumsy", "awkward"]
+  },
+  "grand": {
+    "definition": "impressive or magnificent in scale or beauty",
+    "synonyms": ["impressive", "magnificent"],
+    "antonyms": ["small", "modest"]
+  },
+  "grateful": {
+    "definition": "feeling or showing appreciation or thanks",
+    "synonyms": ["thankful", "appreciative"],
+    "antonyms": ["ungrateful", "ingratitude"]
+  },
+  "gregarious": {
+    "definition": "enjoying the company of others, sociable",
+    "synonyms": ["sociable", "outgoing"],
+    "antonyms": ["antisocial", "loner"]
+  },
+  "guileless": {
+    "definition": "having or showing no deceit or cunning",
+    "synonyms": ["innocent", "naive"],
+    "antonyms": ["cunning", "deceptive"]
+  },
+  "gusto": {
+    "definition": "enthusiasm and energy, especially in a creative activity",
+    "synonyms": ["enthusiasm", "zeal"],
+    "antonyms": ["apathy", "indifference"]
+  },
+},
+"h": {
+  "hazy": {
+    "definition": "not clear or distinct in shape or outline",
+    "synonyms": ["foggy", "misty"],
+    "antonyms": ["clear", "distinct"]
+  },
+  "hefty": {
+    "definition": "strong and powerful, or large and heavy",
+    "synonyms": ["strong", "powerful"],
+    "antonyms": ["weak", "light"]
+  },
+  "hidden": {
+    "definition": "not visible or known, secret",
+    "synonyms": ["secret", "concealed"],
+    "antonyms": ["visible", "obvious"]
+  },
+  "hilarious": {
+    "definition": "extremely funny or amusing",
+    "synonyms": ["funny", "amusing"],
+    "antonyms": ["boring", "dull"]
+  },
+  "honest": {
+    "definition": "telling the truth, sincere",
+    "synonyms": ["truthful", "sincere"],
+    "antonyms": ["dishonest", "deceptive"]
+  },
+  "horizon": {
+    "definition": "the line where the earth meets the sky",
+    "synonyms": ["skyline", "view"],
+    "antonyms": ["nadir", "bottom"]
+  },
+  "hostile": {
+    "definition": "showing or feeling opposition or anger",
+    "synonyms": ["aggressive", "antagonistic"],
+    "antonyms": ["friendly", "peaceful"]
+  },
+  "humane": {
+    "definition": "showing compassion or kindness to people or animals",
+    "synonyms": ["kind", "compassionate"],
+    "antonyms": ["cruel", "inhumane"]
+  },
+  "hypothesis": {
+    "definition": "an idea or theory that is tested to see if it is true",
+    "synonyms": ["theory", "idea"],
+    "antonyms": ["fact", "reality"]
+  },
+  "hypnotic": {
+    "definition": "having a powerful and attractive quality",
+    "synonyms": ["attractive", "alluring"],
+    "antonyms": ["repulsive", "unattractive"]
+  },
+},
+"i": {
+  "idyllic": {
+    "definition": "extremely happy, peaceful, or picturesque",
+    "synonyms": ["peaceful", "serene"],
+    "antonyms": ["chaotic", "turbulent"]
+  },
+  "ignorant": {
+    "definition": "lacking knowledge or information about something",
+    "synonyms": ["uninformed", "unaware"],
+    "antonyms": ["informed", "knowledgeable"]
+  },
+  "illuminating": {
+    "definition": "providing light or understanding, enlightening",
+    "synonyms": ["enlightening", "informative"],
+    "antonyms": ["confusing", "obscure"]
+  },
+  "immaculate": {
+    "definition": "perfectly clean or pure, flawless",
+    "synonyms": ["clean", "pure"],
+    "antonyms": ["dirty", "impure"]
+  },
+  "imminent": {
+    "definition": "likely to happen very soon, near",
+    "synonyms": ["near", "close"],
+    "antonyms": ["distant", "far-off"]
+  },
+  "impartial": {
+    "definition": "not biased or prejudiced, fair",
+    "synonyms": ["fair", "unbiased"],
+    "antonyms": ["biased", "prejudiced"]
+  },
+  "imperative": {
+    "definition": "extremely important or urgent, necessary",
+    "synonyms": ["important", "urgent"],
+    "antonyms": ["optional", "unimportant"]
+  },
+  "impromptu": {
+    "definition": "done or said without prior planning, spontaneous",
+    "synonyms": ["spontaneous", "unplanned"],
+    "antonyms": ["planned", "rehearsed"]
+  },
+  "inconspicuous": {
+    "definition": "not easily noticed, unobtrusive",
+    "synonyms": ["unobtrusive", "unnoticeable"],
+    "antonyms": ["conspicuous", "obvious"]
+  },
+  "infallible": {
+    "definition": "never wrong or failing, perfect",
+    "synonyms": ["perfect", "flawless"],
+    "antonyms": ["fallible", "imperfect"]
+  },
+},
+"j": {
+  "jagged": {
+    "definition": "having a rough or uneven edge, sharp",
+    "synonyms": ["rough", "uneven"],
+    "antonyms": ["smooth", "even"]
+  },
+  "jaunty": {
+    "definition": "having a cheerful and confident air, lively",
+    "synonyms": ["cheerful", "lively"],
+    "antonyms": ["gloomy", "depressed"]
+  },
+  "jocular": {
+    "definition": "good-naturedly humorous or playful, joking",
+    "synonyms": ["humorous", "playful"],
+    "antonyms": ["serious", "sober"]
+  },
+  "journey": {
+    "definition": "a trip or travel from one place to another",
+    "synonyms": ["trip", "travel"],
+    "antonyms": ["stay", "remain"]
+  },
+  "jubilant": {
+    "definition": "feeling or expressing great joy or triumph",
+    "synonyms": ["joyful", "triumphant"],
+    "antonyms": ["sad", "defeated"]
+  },
+  "judicious": {
+    "definition": "having or showing good judgment, wise",
+    "synonyms": ["wise", "prudent"],
+    "antonyms": ["foolish", "impulsive"]
+  },
+  "juxtapose": {
+    "definition": "to place two or more things side by side, compare",
+    "synonyms": ["compare", "contrast"],
+    "antonyms": ["separate", "isolate"]
+  },
+  "jocularity": {
+    "definition": "good-natured humor or joking, playfulness",
+    "synonyms": ["humor", "playfulness"],
+    "antonyms": ["seriousness", "gravity"]
+  },
+  "jeopardize": {
+    "definition": "to put something at risk of harm or loss, endanger",
+    "synonyms": ["endanger", "risk"],
+    "antonyms": ["protect", "safeguard"]
+  },
+  "jargon": {
+    "definition": "specialized or technical language, terminology",
+    "synonyms": ["terminology", "lingo"],
+    "antonyms": ["plain language", "simple terms"]
+  },
+},
+"k": {
+  "kaleidoscopic": {
+    "definition": "constantly changing and multicolored, varied",
+    "synonyms": ["varied", "multicolored"],
+    "antonyms": ["monotonous", "uniform"]
+  },
+  "kinetic": {
+    "definition": "relating to or characterized by motion, dynamic",
+    "synonyms": ["dynamic", "active"],
+    "antonyms": ["static", "still"]
+  },
+  "kismet": {
+    "definition": "fate or destiny, predetermined course",
+    "synonyms": ["fate", "destiny"],
+    "antonyms": ["choice", "free will"]
+  },
+  "knotty": {
+    "definition": "difficult to solve or understand, complex",
+    "synonyms": ["complex", "complicated"],
+    "antonyms": ["simple", "easy"]
+  },
+  "kudos": {
+    "definition": "praise or admiration for an achievement, credit",
+    "synonyms": ["praise", "credit"],
+    "antonyms": ["criticism", "blame"]
+  },
+  "kaleidoscope": {
+    "definition": "an optical instrument that creates a colorful pattern",
+    "synonyms": ["optical instrument", "colorful pattern"],
+    "antonyms": ["monochrome", "static image"]
+  },
+  "keen": {
+    "definition": "having a sharp mind or quick understanding, astute",
+    "synonyms": ["astute", "perceptive"],
+    "antonyms": ["dull", "obtuse"]
+  },
+  "kinship": {
+    "definition": "a feeling of connection or relationship, affinity",
+    "synonyms": ["affinity", "bond"],
+    "antonyms": ["estrangement", "distance"]
+  },
+  "kibosh": {
+    "definition": "to put an end to something, stop or suppress",
+    "synonyms": ["stop", "suppress"],
+    "antonyms": ["allow", "permit"]
+  },
+  "knell": {
+    "definition": "the sound of a bell, especially a funeral bell",
+    "synonyms": ["funeral bell", "mourning sound"],
+    "antonyms": ["celebratory sound", "joyful noise"]
+  },
+},
+"l": {
+  "luminous": {
+    "definition": "giving off light, radiant",
+    "synonyms": ["radiant", "glowing"],
+    "antonyms": ["dark", "dim"]
+  },
+  "lachrymose": {
+    "definition": "given to or characterized by tears or weeping",
+    "synonyms": ["tearful", "weepy"],
+    "antonyms": ["cheerful", "jolly"]
+  },
+  "languid": {
+    "definition": "feeling or showing a lack of energy or enthusiasm",
+    "synonyms": ["lethargic", "apathetic"],
+    "antonyms": ["energetic", "enthusiastic"]
+  },
+  "larceny": {
+    "definition": "the act of stealing, especially in a sneaky or cunning way",
+    "synonyms": ["theft", "thievery"],
+    "antonyms": ["honesty", "integrity"]
+  },
+  "laconic": {
+    "definition": "using few words, concise",
+    "synonyms": ["concise", "terse"],
+    "antonyms": ["verbose", "loquacious"]
+  },
+  "lissome": {
+    "definition": "having a slender and flexible body, lithe",
+    "synonyms": ["lithe", "supple"],
+    "antonyms": ["stiff", "rigid"]
+  },
+  "lachrymal": {
+    "definition": "relating to or producing tears, tearful",
+    "synonyms": ["tearful", "weepy"],
+    "antonyms": ["dry-eyed", "unemotional"]
+  },
+  "languor": {
+    "definition": "a feeling of tiredness or lack of energy, lethargy",
+    "synonyms": ["lethargy", "apathy"],
+    "antonyms": ["vigor", "energy"]
+  },
+  "libertine": {
+    "definition": "a person who rejects moral restraints, immoral",
+    "synonyms": ["immoral", "debauched"],
+    "antonyms": ["moral", "virtuous"]
+  },
+  "lissom": {
+    "definition": "having a slender and flexible body, agile",
+    "synonyms": ["agile", "supple"],
+    "antonyms": ["clumsy", "awkward"]
+  },
+},
+"m": {
+  "mellifluous": {
+    "definition": "having a smooth and sweet sound, harmonious",
+    "synonyms": ["harmonious", "sweet"],
+    "antonyms": ["discordant", "harsh"]
+  },
+  "malleable": {
+    "definition": "capable of being shaped or molded, pliable",
+    "synonyms": ["pliable", "flexible"],
+    "antonyms": ["rigid", "inflexible"]
+  },
+  "malevolent": {
+    "definition": "having or showing a wish to do harm, evil",
+    "synonyms": ["evil", "wicked"],
+    "antonyms": ["benevolent", "kind"]
+  },
+  "magnanimous": {
+    "definition": "generous and noble-minded, unselfish",
+    "synonyms": ["unselfish", "generous"],
+    "antonyms": ["selfish", "stingy"]
+  },
+  "meticulous": {
+    "definition": "showing great care and attention to detail, precise",
+    "synonyms": ["precise", "exact"],
+    "antonyms": ["careless", "sloppy"]
+  },
+  "mirthful": {
+    "definition": "full of joy and laughter, cheerful",
+    "synonyms": ["cheerful", "jolly"],
+    "antonyms": ["sad", "gloomy"]
+  },
+  "malleolus": {
+    "definition": "the bony prominence on either side of the ankle, anklebone",
+    "synonyms": ["anklebone", "ankle joint"],
+    "antonyms": ["knee", "elbow"]
+  },
+  "martinet": {
+    "definition": "a person who demands absolute obedience, strict",
+    "synonyms": ["strict", "severe"],
+    "antonyms": ["lenient", "permissive"]
+  },
+  "mercurial": {
+    "definition": "changeable or unpredictable, volatile",
+    "synonyms": ["volatile", "unpredictable"],
+    "antonyms": ["stable", "consistent"]
+  },
+  "mystique": {
+    "definition": "an aura of mystery or fascination, allure",
+    "synonyms": ["allure", "charm"],
+    "antonyms": ["repulsion", "disgust"]
+  },
+},
+"n": {
+  "narrative": {
+    "definition": "a story or account of events, tale",
+    "synonyms": ["tale", "story"],
+    "antonyms": ["fact", "reality"]
+  },
+  "nascent": {
+    "definition": "just beginning to exist or develop, emerging",
+    "synonyms": ["emerging", "developing"],
+    "antonyms": ["mature", "established"]
+  },
+  "nefarious": {
+    "definition": "wicked or evil, villainous",
+    "synonyms": ["villainous", "wicked"],
+    "antonyms": ["good", "virtuous"]
+  },
+  "nemesis": {
+    "definition": "a person or thing that is an enemy or opponent, adversary",
+    "synonyms": ["adversary", "opponent"],
+    "antonyms": ["ally", "friend"]
+  },
+  "nihilism": {
+    "definition": "the belief that life has no meaning or value, pessimism",
+    "synonyms": ["pessimism", "cynicism"],
+    "antonyms": ["optimism", "idealism"]
+  },
+  "nocturnal": {
+    "definition": "active at night, nighttime",
+    "synonyms": ["nighttime", "evening"],
+    "antonyms": ["diurnal", "daytime"]
+  },
+  "nomenclature": {
+    "definition": "a system of names or terms, terminology",
+    "synonyms": ["terminology", "vocabulary"],
+    "antonyms": ["ignorance", "unfamiliarity"]
+  },
+  "nonchalant": {
+    "definition": "showing a lack of concern or interest, casual",
+    "synonyms": ["casual", "indifferent"],
+    "antonyms": ["concerned", "interested"]
+  },
+  "nugacious": {
+    "definition": "trifling or of little value, insignificant",
+    "synonyms": ["insignificant", "trivial"],
+    "antonyms": ["important", "significant"]
+  },
+  "numinous": {
+    "definition": "having a strong spiritual or mystical quality, awe-inspiring",
+    "synonyms": ["awe-inspiring", "mystical"],
+    "antonyms": ["mundane", "ordinary"]
+  },
+},
+"o": {
+  "obfuscate": {
+    "definition": "to make something unclear or difficult to understand, confuse",
+    "synonyms": ["confuse", "obscure"],
+    "antonyms": ["clarify", "explain"]
+  },
+  "oblivious": {
+    "definition": "not aware of or concerned about something, unaware",
+    "synonyms": ["unaware", "ignorant"],
+    "antonyms": ["aware", "conscious"]
+  },
+  "obsequious": {
+    "definition": "excessively eager to please or obey, fawning",
+    "synonyms": ["fawning", "sycophantic"],
+    "antonyms": ["independent", "assertive"]
+  },
+  "occlude": {
+    "definition": "to block or shut off, obstruct",
+    "synonyms": ["obstruct", "block"],
+    "antonyms": ["open", "unblock"]
+  },
+  "odious": {
+    "definition": "extremely unpleasant or repulsive, hateful",
+    "synonyms": ["hateful", "repulsive"],
+    "antonyms": ["pleasant", "agreeable"]
+  },
+  "olfactory": {
+    "definition": "relating to the sense of smell, nasal",
+    "synonyms": ["nasal", "scented"],
+    "antonyms": ["visual", "auditory"]
+  },
+  "omniscient": {
+    "definition": "having complete or unlimited knowledge, all-knowing",
+    "synonyms": ["all-knowing", "infallible"],
+    "antonyms": ["ignorant", "uninformed"]
+  },
+  "onus": {
+    "definition": "a burden or responsibility, obligation",
+    "synonyms": ["obligation", "duty"],
+    "antonyms": ["privilege", "right"]
+  },
+  "opportune": {
+    "definition": "happening or done at a convenient or suitable time, timely",
+    "synonyms": ["timely", "convenient"],
+    "antonyms": ["inopportune", "untimely"]
+  },
+  "ossify": {
+    "definition": "to change into bone, petrify",
+    "synonyms": ["petrify", "harden"],
+    "antonyms": ["soften", "liquefy"]
+  },
+},
+"p": {
+  "parsimonious": {
+    "definition": "extremely frugal or stingy, miserly",
+    "synonyms": ["miserly", "frugal"],
+    "antonyms": ["generous", "liberal"]
+  },
+  "pellucid": {
+    "definition": "clear or transparent in meaning or style, lucid",
+    "synonyms": ["lucid", "clear"],
+    "antonyms": ["obscure", "ambiguous"]
+  },
+  "perfidious": {
+    "definition": "disloyal or treacherous, faithless",
+    "synonyms": ["faithless", "treacherous"],
+    "antonyms": ["loyal", "faithful"]
+  },
+  "perfunctory": {
+    "definition": "done in a superficial or mechanical way, cursory",
+    "synonyms": ["cursory", "superficial"],
+    "antonyms": ["thorough", "meticulous"]
+  },
+  "perspicacious": {
+    "definition": "having a keen understanding and insight, perceptive",
+    "synonyms": ["perceptive", "astute"],
+    "antonyms": ["obtuse", "unaware"]
+  },
+  "petulant": {
+    "definition": "childishly sulky or bad-tempered, peevish",
+    "synonyms": ["peevish", "irritable"],
+    "antonyms": ["cheerful", "good-natured"]
+  },
+  "phlegmatic": {
+    "definition": "having or showing a calm and even temperament, unemotional",
+    "synonyms": ["unemotional", "calm"],
+    "antonyms": ["emotional", "excitable"]
+  },
+  "pithy": {
+    "definition": "concise and forcefully expressive, terse",
+    "synonyms": ["terse", "concise"],
+    "antonyms": ["verbose", "wordy"]
+  },
+  "placid": {
+    "definition": "peaceful and calm, serene",
+    "synonyms": ["serene", "peaceful"],
+    "antonyms": ["turbulent", "agitated"]
+  },
+  "proclivity": {
+    "definition": "a natural tendency or inclination, propensity",
+    "synonyms": ["propensity", "inclination"],
+    "antonyms": ["aversion", "disinclination"]
+  },
+},
+"q": {
+  "quandary": {
+    "definition": "a state of uncertainty or indecision, dilemma",
+    "synonyms": ["dilemma", "predicament"],
+    "antonyms": ["certainty", "clarity"]
+  },
+  "quarrelsome": {
+    "definition": "given to arguing or fighting, contentious",
+    "synonyms": ["contentious", "belligerent"],
+    "antonyms": ["peaceful", "harmonious"]
+  },
+  "quell": {
+    "definition": "to suppress or overcome, subdue",
+    "synonyms": ["subdue", "suppress"],
+    "antonyms": ["incite", "provoke"]
+  },
+  "querulous": {
+    "definition": "complaining or whining, peevish",
+    "synonyms": ["peevish", "petulant"],
+    "antonyms": ["cheerful", "good-natured"]
+  },
+  "quibble": {
+    "definition": "to argue or complain about something in a petty way, cavil",
+    "synonyms": ["cavil", "nitpick"],
+    "antonyms": ["agree", "accept"]
+  },
+  "quiescent": {
+    "definition": "in a state of dormancy or inactivity, inactive",
+    "synonyms": ["inactive", "dormant"],
+    "antonyms": ["active", "vigorous"]
+  },
+  "quintessential": {
+    "definition": "representing the most perfect or typical example, archetypal",
+    "synonyms": ["archetypal", "prototypical"],
+    "antonyms": ["atypical", "unrepresentative"]
+  },
+  "quip": {
+    "definition": "a clever or witty remark, jest",
+    "synonyms": ["jest", "witticism"],
+    "antonyms": ["serious", "sober"]
+  },
+  "quixotic": {
+    "definition": "extravagantly chivalrous or romantic in a way that is considered unrealistic, idealistic",
+    "synonyms": ["idealistic", "romantic"],
+    "antonyms": ["practical", "realistic"]
+  },
+  "quorum": {
+    "definition": "the minimum number of members required to be present at a meeting, majority",
+    "synonyms": ["majority", "plurality"],
+    "antonyms": ["minority", "few"]
+  },
+},
+"r": {
+  "rabid": {
+    "definition": "having or showing a strong and unreasonable desire or enthusiasm, fanatical",
+    "synonyms": ["fanatical", "zealous"],
+    "antonyms": ["mild", "moderate"]
+  },
+  "rancorous": {
+    "definition": "having or showing a bitter or resentful feeling, spiteful",
+    "synonyms": ["spiteful", "malevolent"],
+    "antonyms": ["benevolent", "kindly"]
+  },
+  "rapacious": {
+    "definition": "having or showing a strong desire to take or acquire something, greedy",
+    "synonyms": ["greedy", "avaricious"],
+    "antonyms": ["generous", "liberal"]
+  },
+  "ratiocination": {
+    "definition": "the process of logical reasoning or argumentation, deduction",
+    "synonyms": ["deduction", "inference"],
+    "antonyms": ["intuition", "guesswork"]
+  },
+  "reclusive": {
+    "definition": "preferring to be alone or avoiding social contact, solitary",
+    "synonyms": ["solitary", "isolated"],
+    "antonyms": ["social", "outgoing"]
+  },
+  "redolent": {
+    "definition": "having a strong and pleasant smell, fragrant",
+    "synonyms": ["fragrant", "aromatic"],
+    "antonyms": ["odorous", "malodorous"]
+  },
+  "refulgent": {
+    "definition": "shining brightly and radiating light, resplendent",
+    "synonyms": ["resplendent", "dazzling"],
+    "antonyms": ["dim", "dull"]
+  },
+  "reprobate": {
+    "definition": "a person who is considered to be morally bad or wicked, depraved",
+    "synonyms": ["depraved", "corrupt"],
+    "antonyms": ["virtuous", "upright"]
+  },
+  "rhapsodic": {
+    "definition": "expressing or characterized by enthusiastic or exaggerated emotion, effusive",
+    "synonyms": ["effusive", "exuberant"],
+    "antonyms": ["restrained", "moderate"]
+  },
+  "rigor": {
+    "definition": "a condition of being stiff or unyielding, severity",
+    "synonyms": ["severity", "austerity"],
+    "antonyms": ["leniency", "flexibility"]
+  },
+},
+"s": {
+  "sagacious": {
+    "definition": "having keen discernment and good judgment, wise",
+    "synonyms": ["wise", "astute"],
+    "antonyms": ["foolish", "naive"]
+  },
+  "salubrious": {
+    "definition": "having a beneficial or healthy effect, wholesome",
+    "synonyms": ["wholesome", "healthful"],
+    "antonyms": ["harmful", "unhealthy"]
+  },
+  "sanguine": {
+    "definition": "having a cheerful and optimistic disposition, hopeful",
+    "synonyms": ["hopeful", "confident"],
+    "antonyms": ["pessimistic", "despondent"]
+  },
+  "saturnine": {
+    "definition": "having a gloomy or sullen disposition, melancholy",
+    "synonyms": ["melancholy", "morose"],
+    "antonyms": ["cheerful", "jovial"]
+  },
+  "scintillating": {
+    "definition": "sparkling or radiant with bright flashes of light, dazzling",
+    "synonyms": ["dazzling", "brilliant"],
+    "antonyms": ["dull", "dim"]
+  },
+  "sedentary": {
+    "definition": "involving or characterized by much sitting, inactive",
+    "synonyms": ["inactive", "stationary"],
+    "antonyms": ["active", "mobile"]
+  },
+  "serendipity": {
+    "definition": "the occurrence of finding something valuable or delightful when you are not looking for it, happy accident",
+    "synonyms": ["happy accident", "fluke"],
+    "antonyms": ["misfortune", "calamity"]
+  },
+  "sibilant": {
+    "definition": "having a hissing sound, like the letter 's' or 'z'",
+    "synonyms": ["hissing", "whistling"],
+    "antonyms": ["silent", "muted"]
+  },
+  "simulacrum": {
+    "definition": "a copy or representation of something, imitation",
+    "synonyms": ["imitation", "facsimile"],
+    "antonyms": ["original", "genuine"]
+  },
+  "solipsistic": {
+    "definition": "having or showing an excessive interest in oneself, egotistical",
+    "synonyms": ["egotistical", "self-centered"],
+    "antonyms": ["altruistic", "selfless"]
+  },
+},
+"t": {
+  "taciturn": {
+    "definition": "unwilling to talk or communicate, silent",
+    "synonyms": ["silent", "uncommunicative"],
+    "antonyms": ["talkative", "loquacious"]
+  },
+  "talismanic": {
+    "definition": "having a magical or supernatural power, charm",
+    "synonyms": ["charm", "amulet"],
+    "antonyms": ["cursed", "hexed"]
+  },
+  "tangential": {
+    "definition": "only slightly connected or related, peripheral",
+    "synonyms": ["peripheral", "incidental"],
+    "antonyms": ["central", "main"]
+  },
+  "tenuous": {
+    "definition": "thin or weak, fragile",
+    "synonyms": ["fragile", "flimsy"],
+    "antonyms": ["strong", "sturdy"]
+  },
+  "thespian": {
+    "definition": "relating to the theater or acting, dramatic",
+    "synonyms": ["dramatic", "histrionic"],
+    "antonyms": ["undramatic", "untheatrical"]
+  },
+  "timorous": {
+    "definition": "fearful or lacking courage, timid",
+    "synonyms": ["timid", "cowardly"],
+    "antonyms": ["brave", "fearless"]
+  },
+  "torpor": {
+    "definition": "a state of physical or mental inactivity, lethargy",
+    "synonyms": ["lethargy", "drowsiness"],
+    "antonyms": ["activity", "vigilance"]
+  },
+  "tortuous": {
+    "definition": "full of twists and turns, winding",
+    "synonyms": ["winding", "circuitous"],
+    "antonyms": ["straight", "direct"]
+  },
+  "truculent": {
+    "definition": "fierce or aggressive, belligerent",
+    "synonyms": ["belligerent", "hostile"],
+    "antonyms": ["peaceful", "friendly"]
+  },
+  "turgid": {
+    "definition": "swollen or inflated, pompous",
+    "synonyms": ["pompous", "bombastic"],
+    "antonyms": ["simple", "modest"]
+  },
+},
+"u": {
+  "ubiquitous": {
+    "definition": "existing or being everywhere at the same time, widespread",
+    "synonyms": ["widespread", "universal"],
+    "antonyms": ["rare", "scarce"]
+  },
+  "umbrage": {
+    "definition": "a feeling of anger or annoyance, offense",
+    "synonyms": ["offense", "resentment"],
+    "antonyms": ["delight", "pleasure"]
+  },
+  "unassailable": {
+    "definition": "impossible to attack or criticize, impregnable",
+    "synonyms": ["impregnable", "indefensible"],
+    "antonyms": ["vulnerable", "weak"]
+  },
+  "unbridled": {
+    "definition": "uncontrolled or unrestrained, wild",
+    "synonyms": ["wild", "unrestrained"],
+    "antonyms": ["controlled", "restrained"]
+  },
+  "unctuous": {
+    "definition": "excessively flattering or trying to please, oily",
+    "synonyms": ["oily", "insincere"],
+    "antonyms": ["sincere", "genuine"]
+  },
+  "unfettered": {
+    "definition": "not restricted or limited, free",
+    "synonyms": ["free", "unrestricted"],
+    "antonyms": ["restricted", "limited"]
+  },
+  "unilateral": {
+    "definition": "involving or done by one person or group, one-sided",
+    "synonyms": ["one-sided", "single-handed"],
+    "antonyms": ["mutual", "bilateral"]
+  },
+  "unobtrusive": {
+    "definition": "not noticeable or attention-seeking, discreet",
+    "synonyms": ["discreet", "unassuming"],
+    "antonyms": ["obtrusive", "conspicuous"]
+  },
+  "unparalleled": {
+    "definition": "having no equal or match, unmatched",
+    "synonyms": ["unmatched", "unequaled"],
+    "antonyms": ["matched", "equaled"]
+  },
+  "urbane": {
+    "definition": "courteous and refined, polite",
+    "synonyms": ["polite", "sophisticated"],
+    "antonyms": ["rude", "coarse"]
+  },
+},
+"v": {
+  "vacillate": {
+    "definition": "to hesitate or be indecisive, waver",
+    "synonyms": ["waver", "hesitate"],
+    "antonyms": ["decide", "commit"]
+  },
+  "vagary": {
+    "definition": "a whimsical or unpredictable idea or notion, caprice",
+    "synonyms": ["caprice", "whim"],
+    "antonyms": ["predictability", "stability"]
+  },
+  "valedictory": {
+    "definition": "relating to a farewell or final speech, concluding",
+    "synonyms": ["concluding", "final"],
+    "antonyms": ["introductory", "beginning"]
+  },
+  "vaporous": {
+    "definition": "lacking substance or reality, intangible",
+    "synonyms": ["intangible", "ethereal"],
+    "antonyms": ["substantial", "tangible"]
+  },
+  "vehement": {
+    "definition": "strongly felt or expressed, intense",
+    "synonyms": ["intense", "passionate"],
+    "antonyms": ["mild", "weak"]
+  },
+  "vellichor": {
+    "definition": "the strange, wistful, and often melancholic appeal of old, used, or abandoned things",
+    "synonyms": ["nostalgia", "sentimentality"],
+    "antonyms": ["novelty", "innovation"]
+  },
+  "venal": {
+    "definition": "open to bribery or corruption, mercenary",
+    "synonyms": ["mercenary", "corrupt"],
+    "antonyms": ["honest", "principled"]
+  },
+  "veracious": {
+    "definition": "truthful or honest, accurate",
+    "synonyms": ["accurate", "reliable"],
+    "antonyms": ["false", "deceptive"]
+  },
+  "verbiage": {
+    "definition": "an excessive use of words, verbosity",
+    "synonyms": ["verbosity", "loquacity"],
+    "antonyms": ["brevity", "conciseness"]
+  },
+  "vigilant": {
+    "definition": "watchful or attentive, alert",
+    "synonyms": ["alert", "watchful"],
+    "antonyms": ["negligent", "careless"]
+  },
+},
+"w": {
+  "wanderlust": {
+    "definition": "a strong desire to travel and explore, a love of adventure",
+    "synonyms": ["adventure", "exploration"],
+    "antonyms": ["sedentary", "stagnation"]
+  },
+  "wanton": {
+    "definition": "unjustifiably violent or cruel, reckless",
+    "synonyms": ["reckless", "brutal"],
+    "antonyms": ["justified", "merciful"]
+  },
+  "wary": {
+    "definition": "feeling or showing caution, suspicious",
+    "synonyms": ["suspicious", "cautious"],
+    "antonyms": ["trusting", "naive"]
+  },
+  "whimsy": {
+    "definition": "a feeling or mood of lighthearted, fanciful, or playful humor, capriciousness",
+    "synonyms": ["capriciousness", "playfulness"],
+    "antonyms": ["seriousness", "gravity"]
+  },
+  "winsome": {
+    "definition": "charmingly attractive or pleasing, endearing",
+    "synonyms": ["endearing", "charming"],
+    "antonyms": ["unpleasant", "off-putting"]
+  },
+  "wistful": {
+    "definition": "feeling a sense of melancholy or longing, nostalgic",
+    "synonyms": ["nostalgic", "melancholy"],
+    "antonyms": ["cheerful", "carefree"]
+  },
+  "wither": {
+    "definition": "to become dry and shriveled, to decline or deteriorate",
+    "synonyms": ["decline", "deteriorate"],
+    "antonyms": ["flourish", "thrive"]
+  },
+  "witty": {
+    "definition": "having or showing a quick and clever mind, humorous",
+    "synonyms": ["humorous", "clever"],
+    "antonyms": ["dull", "unamusing"]
+  },
+  "woebegone": {
+    "definition": "feeling or showing great sadness or distress, miserable",
+    "synonyms": ["miserable", "dejected"],
+    "antonyms": ["happy", "cheerful"]
+  },
+  "wrought": {
+    "definition": "worked or shaped into a desired form, elaborate",
+    "synonyms": ["elaborate", "intricate"],
+    "antonyms": ["simple", "plain"]
+  },
+},
+"x": {
+ "xanthic": {
+ "definition": "yellowish in color, relating to or containing xanthic acid",
+ "synonyms": ["yellow", "golden"],
+ "antonyms": ["blue", "green"]
+ },
+ "xenial": {
+ "definition": "friendly and hospitable to guests or strangers",
+ "synonyms": ["hospitable", "welcoming"],
+ "antonyms": ["hostile", "unfriendly"]
+ },
+ "xenophobic": {
+ "definition": "fearing or disliking people from other countries or cultures",
+ "synonyms": ["nationalistic", "intolerant"],
+ "antonyms": ["open-minded", "tolerant"]
+ },
+ "xeriscape": {
+ "definition": "a type of landscaping that uses drought-tolerant plants and efficient irrigation",
+ "synonyms": ["drought-resistant", "water-efficient"],
+ "antonyms": ["water-intensive", "high-maintenance"]
+ },
+ "xerox": { "definition": "to copy or reproduce something using a photocopier",
+ "synonyms": ["copy", "reproduce"],
+ "antonyms": ["original", "unique"]
+ },
+ "xenogamy": {
+ "definition": "the transfer of pollen from one plant to another of a different species",
+ "synonyms": ["cross-pollination", "hybridization"],
+ "antonyms": ["self-pollination", "inbreeding"]
+ },
+ "xanthoma": {
+ "definition": "a yellowish patch or nodule on the skin, often caused by high cholesterol",
+ "synonyms": ["lesion", "growth"],
+ "antonyms": ["healthy skin", "normal tissue"]
+ },
+ "xenophile": {
+ "definition": "a person who is attracted to or has a strong interest in foreign people or cultures",
+ "synonyms": ["cosmopolitan", "open-minded"],
+ "antonyms": ["xenophobe", "nationalist"]
+ },
+ "xeroderma": {
+ "definition": "a condition characterized by dry, scaly skin, often caused by a genetic disorder",
+ "synonyms": ["dry skin", "scaly skin"],
+ "antonyms": ["moist skin", "healthy skin"]
+ },
+ "xenon": {
+ "definition": "a noble gas element, used in high-intensity lamps and other applications",
+ "synonyms": ["noble gas", "rare element"],
+ "antonyms": ["common element", "reactive gas"]
+ },
+},
+"y": {
+ "yonder": {
+ "definition": "at a distance, either physically or metaphorically",
+ "synonyms": ["distant", "far-off"],
+ "antonyms": ["nearby", "close"]
+ },
+ "yoke": {
+ "definition": "a wooden frame or bar used to join two draft animals together",
+ "synonyms": ["harness", "couple"],
+ "antonyms": ["separate", "individual"]
+ },
+ "youthful": {
+ "definition": "having or showing the qualities of youth, such as energy and enthusiasm",
+ "synonyms": ["energetic", "vibrant"],
+ "antonyms": ["aged", "mature"]
+ },
+ "yawn": {
+ "definition": "to open the mouth widely and take a deep breath, often due to tiredness or boredom",
+ "synonyms": ["stifle a yawn", "doze"],
+ "antonyms": ["stay awake", "be alert"]
+ },
+ "yelp": {
+ "definition": "to make a short, sharp cry, often due to pain or excitement",
+ "synonyms": ["shriek", "scream"],
+ "antonyms": ["whisper", "murmur"]
+ },
+ "yokelet": {
+ "definition": "a small yoke, especially one used to join two birds together",
+ "synonyms": ["harness", "couple"],
+ "antonyms": ["separate", "individual"]
+ },
+ "yogic": {
+ "definition": "relating to yoga, a system of physical and mental exercises",
+ "synonyms": ["meditative", "spiritual"],
+ "antonyms": ["physical", "worldly"]
+ },
+ "yonderly": {
+ "definition": "at a distance, either physically or metaphorically",
+ "synonyms": ["distant", "far-off"],
+ "antonyms": ["nearby", "close"]
+ },
+ "yore": {
+ "definition": "a long time ago, in the past",
+ "synonyms": ["formerly", "in days of old"],
+ "antonyms": ["nowadays", "currently"]
+ },
+ "yucky": {
+ "definition": "unpleasant or disgusting, often used to describe food or texture",
+ "synonyms": ["gross", "disgusting"],
+ "antonyms": ["delicious", "appetizing"]
+ },
+},
+"z": { "zany": { "definition": "amusingly unconventional and idiosyncratic, often in an appealing and humorous way", "synonyms": ["quirky", "offbeat"], "antonyms": ["normal", "conventional"] }, "zeal": { "definition": "a strong enthusiasm or eagerness, often in pursuit of a goal or ideal", "synonyms": ["enthusiasm", "passion"], "antonyms": ["apathy", "indifference"] }, "zenith": { "definition": "the highest or most superior point or position, often referring to the sky or a celestial body", "synonyms": ["apex", "pinnacle"], "antonyms": ["nadir", "lowest point"] }, "zest": { "definition": "a quality of enthusiasm and energy, often used to describe a lively or exciting experience", "synonyms": ["flavor", "vigor"], "antonyms": ["dullness", "lethargy"] }, "zigzag": { "definition": "a line or course that has a series of sharp turns or angles, often used to describe a path or movement", "synonyms": ["meandering", "winding"], "antonyms": ["straight", "linear"] }, "zinc": { "definition": "a bluish-white metal element, often used in alloys and batteries", "synonyms": ["metal", "element"], "antonyms": ["non-metal", "compound"] }, "zip": { "definition": "a fastening or closure, often used to describe a quick or energetic movement", "synonyms": ["speed", "velocity"], "antonyms": ["slowness", "lethargy"] }, "zodiac": { "definition": "a circle of twelve signs or symbols, often used to represent the months of the year or astrological influences", "synonyms": ["astrology", "horoscope"], "antonyms": ["calendar", "almanac"] }, "zombie": { "definition": "a mythical creature said to be reanimated from the dead, often used to describe a person who is apathetic or unresponsive", "synonyms": ["undead", "reanimated"], "antonyms": ["alive", "conscious"] }, "zephyr": { "definition": "a gentle, mild breeze, often used to describe a pleasant or soothing atmosphere", "synonyms": ["breeze", "gust"], "antonyms": ["storm", "gale"] }, },
+};
+
+var searchInput = document.getElementById("search-input");
+var searchButton = document.getElementById("search-button");
+var resultDiv = document.getElementById("result");
+var suggestionsDiv = document.getElementById("suggestions");
+var suggestionsList = document.getElementById("suggestions-list");
+
+if (searchInput.addEventListener) {
+  searchInput.addEventListener("input", showSuggestions);
+  searchButton.addEventListener("click", searchWord);
+} else {
+  searchInput.attachEvent("onpropertychange", showSuggestions);
+  searchButton.attachEvent("onclick", searchWord);
+}
+
+function showSuggestions() {
+  var userInput = searchInput.value.toLowerCase();
+  var suggestions = [];
+  for (var letter in dictionary) {
+    for (var word in dictionary[letter]) {
+      if (word.indexOf(userInput) === 0) {
+        suggestions.push(word);
+      }
+    }
+  }
+  if (suggestions.length > 0) {
+    suggestionsDiv.style.display = "block";
+    suggestionsList.innerHTML = "";
+    for (var i = 0; i < suggestions.length; i++) {
+      var suggestionListItem = document.createElement("li");
+      suggestionListItem.innerHTML = suggestions[i];
+      suggestionListItem.onclick = function() {
+        searchInput.value = this.innerHTML;
+        showSuggestions();
+      };
+      suggestionsList.appendChild(suggestionListItem);
+    }
+  } else {
+    suggestionsDiv.style.display = "none";
+  }
+}
+
+function searchWord() {
+  var word = searchInput.value.toLowerCase();
+  var firstLetter = word.charAt(0);
+  var wordDefinition = dictionary[firstLetter] && dictionary[firstLetter][word];
+  
+  if (wordDefinition) {
+    var resultHTML = "<h2>" + word + "</h2>";
+    resultHTML += "<p>Definition: " + wordDefinition.definition + "</p>";
+    resultHTML += "<p>Synonyms: " + wordDefinition.synonyms.join(", ") + "</p>";
+    resultHTML += "<p>Antonyms: " + wordDefinition.antonyms.join(", ") + "</p>";
+    resultDiv.innerHTML = resultHTML;
+    suggestionsDiv.style.display = "none";
+  } else {
+    resultDiv.innerHTML = "Word not found";
+    suggestionsDiv.style.display = "none";
+  }
+}
+  </script>
+</body>
+</html>
